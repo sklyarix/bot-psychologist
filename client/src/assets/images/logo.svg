@@ -1,0 +1,314 @@
+<svg
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="24 24 51.2356 45"
+          xmlns="http://www.w3.org/2000/svg"
+        
+          fill="none"
+          customFrame="#000000"
+        >
+          <defs>
+            <g id="pixso_custom_effect_0">
+              <effect
+                x="0.000000"
+                y="0.000000"
+                visibility="visible"
+                fill="rgb(204,198.115,191.054)"
+                fill-opacity="1"
+                effectType="dropShadow"
+                stdDeviation="30"
+                radius="-6"
+              />
+              <effect
+                x="0.000000"
+                y="0.000000"
+                visibility="visible"
+                fill="rgb(255,255,255)"
+                fill-opacity="1"
+                effectType="dropShadow"
+                stdDeviation="22.5"
+                radius="-6"
+              />
+            </g>
+            <filter
+              id="filter_0"
+              width="74.837280"
+              height="93.000000"
+              x="0.000000"
+              y="0.000000"
+              filterUnits="userSpaceOnUse"
+              customEffect="url(#pixso_custom_effect_0)"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feOffset dx="-0.000061" dy="-0.000000" in="SourceAlpha" />
+              <feMorphology radius="6" operator="erode" />
+              <feOffset dx="0.000061" dy="0.000000" />
+              <feGaussianBlur stdDeviation="10" />
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 0.8 0 0 0 0 0.776923 0 0 0 0 0.749231 0 0 0 1 0 "
+              />
+              <feBlend result="effect_dropShadow_1" in2="BackgroundImageFix" mode="normal" />
+              <feOffset dx="-0.000061" dy="-0.000000" in="SourceAlpha" />
+              <feMorphology radius="6" operator="erode" />
+              <feOffset dx="0.000061" dy="0.000000" />
+              <feGaussianBlur stdDeviation="7.5" />
+              <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 " />
+              <feBlend result="effect_dropShadow_2" in2="effect_dropShadow_1" mode="normal" />
+              <feBlend result="shape" in="SourceGraphic" in2="effect_dropShadow_2" mode="normal" />
+            </filter>
+            <g id="pixso_custom_effect_1">
+              <effect
+                x="0.000000"
+                y="0.000000"
+                visibility="visible"
+                fill="rgb(204,198.115,191.054)"
+                fill-opacity="1"
+                effectType="dropShadow"
+                stdDeviation="30"
+                radius="-6"
+              />
+              <effect
+                x="0.000000"
+                y="0.000000"
+                visibility="visible"
+                fill="rgb(255,255,255)"
+                fill-opacity="1"
+                effectType="dropShadow"
+                stdDeviation="22.5"
+                radius="-6"
+              />
+            </g>
+            <filter
+              id="filter_1"
+              width="89.204834"
+              height="93.000000"
+              x="10.030762"
+              y="0.000000"
+              filterUnits="userSpaceOnUse"
+              customEffect="url(#pixso_custom_effect_1)"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feOffset dx="-0.000000" dy="-0.000000" in="SourceAlpha" />
+              <feMorphology radius="6" operator="erode" />
+              <feOffset dx="0.000000" dy="0.000000" />
+              <feGaussianBlur stdDeviation="10" />
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 0.8 0 0 0 0 0.776923 0 0 0 0 0.749231 0 0 0 1 0 "
+              />
+              <feBlend result="effect_dropShadow_1" in2="BackgroundImageFix" mode="normal" />
+              <feOffset dx="-0.000000" dy="-0.000000" in="SourceAlpha" />
+              <feMorphology radius="6" operator="erode" />
+              <feOffset dx="0.000000" dy="0.000000" />
+              <feGaussianBlur stdDeviation="7.5" />
+              <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 " />
+              <feBlend result="effect_dropShadow_2" in2="effect_dropShadow_1" mode="normal" />
+              <feBlend result="shape" in="SourceGraphic" in2="effect_dropShadow_2" mode="normal" />
+            </filter>
+            <g id="pixso_custom_effect_2">
+              <effect
+                x="0.000000"
+                y="0.000000"
+                visibility="visible"
+                fill="rgb(204,198.115,191.054)"
+                fill-opacity="1"
+                effectType="dropShadow"
+                stdDeviation="30"
+                radius="-6"
+              />
+              <effect
+                x="0.000000"
+                y="0.000000"
+                visibility="visible"
+                fill="rgb(255,255,255)"
+                fill-opacity="1"
+                effectType="dropShadow"
+                stdDeviation="22.5"
+                radius="-6"
+              />
+            </g>
+            <filter
+              id="filter_2"
+              width="71.855347"
+              height="74.566284"
+              x="21.416016"
+              y="0.000000"
+              filterUnits="userSpaceOnUse"
+              customEffect="url(#pixso_custom_effect_2)"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feOffset dx="-0.000061" dy="-0.000061" in="SourceAlpha" />
+              <feMorphology radius="6" operator="erode" />
+              <feOffset dx="0.000061" dy="0.000061" />
+              <feGaussianBlur stdDeviation="10" />
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 0.8 0 0 0 0 0.776923 0 0 0 0 0.749231 0 0 0 1 0 "
+              />
+              <feBlend result="effect_dropShadow_1" in2="BackgroundImageFix" mode="normal" />
+              <feOffset dx="-0.000061" dy="-0.000061" in="SourceAlpha" />
+              <feMorphology radius="6" operator="erode" />
+              <feOffset dx="0.000061" dy="0.000061" />
+              <feGaussianBlur stdDeviation="7.5" />
+              <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 " />
+              <feBlend result="effect_dropShadow_2" in2="effect_dropShadow_1" mode="normal" />
+              <feBlend result="shape" in="SourceGraphic" in2="effect_dropShadow_2" mode="normal" />
+            </filter>
+            <g id="pixso_custom_effect_3">
+              <effect
+                x="0.000000"
+                y="0.000000"
+                visibility="visible"
+                fill="rgb(204,198.115,191.054)"
+                fill-opacity="1"
+                effectType="dropShadow"
+                stdDeviation="30"
+                radius="-6"
+              />
+              <effect
+                x="0.000000"
+                y="0.000000"
+                visibility="visible"
+                fill="rgb(255,255,255)"
+                fill-opacity="1"
+                effectType="dropShadow"
+                stdDeviation="22.5"
+                radius="-6"
+              />
+            </g>
+            <filter
+              id="filter_3"
+              width="61.012085"
+              height="62.638550"
+              x="28.464478"
+              y="0.000000"
+              filterUnits="userSpaceOnUse"
+              customEffect="url(#pixso_custom_effect_3)"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feOffset dx="0.000061" dy="-0.000061" in="SourceAlpha" />
+              <feMorphology radius="6" operator="erode" />
+              <feOffset dx="-0.000061" dy="0.000061" />
+              <feGaussianBlur stdDeviation="10" />
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 0.8 0 0 0 0 0.776923 0 0 0 0 0.749231 0 0 0 1 0 "
+              />
+              <feBlend result="effect_dropShadow_1" in2="BackgroundImageFix" mode="normal" />
+              <feOffset dx="0.000061" dy="-0.000061" in="SourceAlpha" />
+              <feMorphology radius="6" operator="erode" />
+              <feOffset dx="-0.000061" dy="0.000061" />
+              <feGaussianBlur stdDeviation="7.5" />
+              <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 " />
+              <feBlend result="effect_dropShadow_2" in2="effect_dropShadow_1" mode="normal" />
+              <feBlend result="shape" in="SourceGraphic" in2="effect_dropShadow_2" mode="normal" />
+            </filter>
+            <g id="pixso_custom_effect_4">
+              <effect
+                x="0.000000"
+                y="0.000000"
+                visibility="visible"
+                fill="rgb(204,198.115,191.054)"
+                fill-opacity="1"
+                effectType="dropShadow"
+                stdDeviation="30"
+                radius="-6"
+              />
+              <effect
+                x="0.000000"
+                y="0.000000"
+                visibility="visible"
+                fill="rgb(255,255,255)"
+                fill-opacity="1"
+                effectType="dropShadow"
+                stdDeviation="22.5"
+                radius="-6"
+              />
+            </g>
+            <filter
+              id="filter_4"
+              width="51.253052"
+              height="51.253052"
+              x="33.885132"
+              y="0.000000"
+              filterUnits="userSpaceOnUse"
+              customEffect="url(#pixso_custom_effect_4)"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feOffset dx="-0.000061" dy="0.000061" in="SourceAlpha" />
+              <feMorphology radius="6" operator="erode" />
+              <feOffset dx="0.000061" dy="-0.000061" />
+              <feGaussianBlur stdDeviation="10" />
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 0.8 0 0 0 0 0.776923 0 0 0 0 0.749231 0 0 0 1 0 "
+              />
+              <feBlend result="effect_dropShadow_1" in2="BackgroundImageFix" mode="normal" />
+              <feOffset dx="-0.000061" dy="0.000061" in="SourceAlpha" />
+              <feMorphology radius="6" operator="erode" />
+              <feOffset dx="0.000061" dy="-0.000061" />
+              <feGaussianBlur stdDeviation="7.5" />
+              <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0 " />
+              <feBlend result="effect_dropShadow_2" in2="effect_dropShadow_1" mode="normal" />
+              <feBlend result="shape" in="SourceGraphic" in2="effect_dropShadow_2" mode="normal" />
+            </filter>
+          </defs>
+          <g id="Сочетание 5" opacity="0.360000014">
+            <g id="Сочетание 6">
+              <g filter="url(#filter_0)">
+                <path
+                  id="Форма 1"
+                  d="M30.506 24L24 24L44.3313 69L50.8373 69L30.506 24Z"
+                  fill="rgb(34,67,79)"
+                  fill-rule="nonzero"
+                />
+              </g>
+            </g>
+            <g id="Сочетание 7">
+              <g filter="url(#filter_1)">
+                <path
+                  id="Форма 2"
+                  d="M40.5368 24L34.0308 24L54.3621 69L56.4589 69L58.541 63.8494L75.2355 24L71.7113 24L56.4589 59.241L40.5368 24Z"
+                  fill="rgb(34,67,79)"
+                  fill-rule="evenodd"
+                />
+              </g>
+            </g>
+            <g id="Сочетание 8">
+              <g filter="url(#filter_2)">
+                <path
+                  id="Форма 3"
+                  d="M49.1826 24L45.416 24L57.1868 50.5662L58.4007 50.5662L59.6061 47.5256L69.2714 24L67.2312 24L58.4007 44.8049L49.1826 24Z"
+                  fill="rgb(34,67,79)"
+                  fill-rule="evenodd"
+                />
+              </g>
+            </g>
+            <g id="Сочетание 9">
+              <g filter="url(#filter_3)">
+                <path
+                  id="Форма 4"
+                  d="M54.519 24L52.4645 24L58.8849 38.6386L59.5471 38.6386L60.2046 36.963L65.4766 24L64.3637 24L59.5471 35.4639L54.519 24Z"
+                  fill="rgb(34,67,79)"
+                  fill-rule="evenodd"
+                />
+              </g>
+            </g>
+            <g id="Сочетание 10">
+              <g filter="url(#filter_4)">
+                <circle
+                  id="Эллипс 1"
+                  cx="59.5116386"
+                  cy="25.6265049"
+                  r="1.62650597"
+                  fill="rgb(34,67,79)"
+                />
+              </g>
+            </g>
+          </g>
+        </svg>

@@ -1,0 +1,50 @@
+# === Node.js (backend + frontend) ===
+node_modules/
+yarn-debug.log*
+
+
+# === Build & Dist ===
+# (исключаем сборки React и любые артефакты)
+client/dist/
+client/build/
+backend/dist/
+backend/build/
+.vite/
+.cache/
+logs/
+*.log
+*.pid
+*.pid.lock
+
+# === Environment files ===
+backend/.env
+client/.env
+
+
+# === TypeScript ===
+*.tsbuildinfo
+
+# === Lint & Format ===
+.eslintcache
+
+# === Prisma (backend only) ===
+backend/prisma/dev.db
+backend/prisma/*.db-journal
+backend/prisma/migrations/*/migration.sql.bak
+
+# === System ===
+.DS_Store
+Thumbs.db
+
+# === IDEs ===
+.vscode/
+.idea/
+*.swp
+
+# === Tests ===
+coverage/
+*.lcov
+
+# === Temporary ===
+*.temp
+*.tmp
