@@ -7,7 +7,10 @@ import { startQueues, stopBoss } from "./src/queues/index.js";
 import index from "./src/routes/index.js";
 import { aiGoalWorker } from "./src/workers/aiGoal.worker.js";
 import { aiQuestionAnswerWorker } from "./src/workers/aiQuestionAnswer.worker.js";
-import { sendMessageWorker } from "./src/workers/sendMessage.worker.js";
+import {
+  sendMessageVideoWorker,
+  sendMessageWorker,
+} from "./src/workers/sendMessage.worker.js";
 
 const app = express();
 let bot;
@@ -26,6 +29,7 @@ const init = async () => {
   // воркеры
   await aiGoalWorker();
   await sendMessageWorker();
+  await sendMessageVideoWorker();
   await aiQuestionAnswerWorker();
 
   httpServer = app.listen(env.PORT, () => {

@@ -17,11 +17,4 @@ export async function infoCommand(ctx) {
 
   await ctx.replyWithHTML(text);
   await ctx.replyWithVideoNote({ source: videoPath });
-
-  /*
-  await ctx.replyWithVideoNote({
-    source: "./assets/video/video-test.mp4",
-  });
-  
-   */
 }

@@ -1,6 +1,11 @@
 import { splitPlanByDays } from "../helpers/splitPlanByDays.js";
 import { prisma } from "../lib/prisma.js";
-import { AI_GOAL_QUEUE, BOT_MESSAGE_QUEUE, getBoss } from "../queues/index.js";
+import {
+  AI_GOAL_QUEUE,
+  BOT_MESSAGE_QUEUE,
+  BOT_MESSAGE_VIDEO_QUEUE,
+  getBoss,
+} from "../queues/index.js";
 import { AIService } from "../services/ai.service.js";
 
 const ai = new AIService();
@@ -64,6 +69,20 @@ export async function aiGoalWorker() {
             retryDelay: 60,
           },
         );
+
+        if (i === diffDays) {
+          await boss.send(
+            BOT_MESSAGE_VIDEO_QUEUE,
+            { telegramId },
+            {
+              startAfter: new Date(
+                now.getTime() + (i - 1) * 24 * 60 * 60 * 1000,
+              ),
+              retryLimit: 3,
+              retryDelay: 60,
+            },
+          );
+        }
       }
     } catch (e) {
       console.error("aiGoalWorker error:", e);
