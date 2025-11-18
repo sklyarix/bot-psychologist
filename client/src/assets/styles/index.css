@@ -16,6 +16,7 @@
   font-style: normal;
   font-display: swap;
 }
+/*
 @font-face {
   font-family: "UnifixSPDemo";
   src: url("../fonts/UnifixSPDemo.otf") format("opentype");
@@ -23,17 +24,18 @@
   font-style: normal;
   font-display: swap;
 }
-
+*/
 @theme {
   --font-ars: "ArsenicaTrial", ui-sans-serif, system-ui, sans-serif;
   --font-circe: "CirceRounded", ui-sans-serif, system-ui, sans-serif;
-  --font-unifix: "UnifixSPDemo", ui-sans-serif, system-ui, sans-serif;
   --color-sand: #EFEAE4;
   --color-navy: #22434F;
   --color-statusLoaded: #DBCC6E;
   --color-statusCompleted: #00FF0B;
   --color-statusFailed: #FF0000;
 }
+/* --font-unifix: "UnifixSPDemo", ui-sans-serif, system-ui, sans-serif; */
+
 
 /* скрыть полосу прокрутки, но оставить скролл */
 @utility scrollbar-none {
@@ -45,20 +47,23 @@ body {
   background-color: var(--color-sand);
   color: var(--color-navy);
   line-height: 1.2;
+  font-family: "CirceRounded", serif;
 }
 /* для Blink/WebKit нужен отдельный селектор */
 .scrollbar-none::-webkit-scrollbar { display: none; }
 
 .btn{
   display: block;
-  padding: 8px 6px 9px 6px;
+  padding: 10px 6px 8px 6px;
   width: 100%;
   
   background-color: var(--color-navy);
   border-radius: 15px;
   
-  font-family: "Unifix SP Demo";
+  font-family:"CirceRounded", serif;
   font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
   text-align: center;
   color: #fff;
 }

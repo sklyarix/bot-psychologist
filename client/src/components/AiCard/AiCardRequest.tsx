@@ -20,14 +20,14 @@ const AiRequestCard = (props: IAiRequestCard) => {
   return (
     <div className="bg-navy flex w-full flex-col rounded-[15px] shadow-[1px_4px_4px_0_rgba(0,0,0,0.25)]">
       <div
-        className="relative flex w-full cursor-pointer items-center justify-between px-5 pt-6 pb-5 text-white"
+        className="relative flex w-full cursor-pointer items-center justify-between px-5 pt-8 pb-5 text-white"
         onClick={handleClick}
       >
         <div className="absolute top-[10px] right-[20px] left-[20px] flex justify-between">
           <div className="text-[10px]">{formatDate(date)}</div>
           <StatusBadge status={status} />
         </div>
-        <div className="text-lg">{title}</div>
+        <div className="">{title}</div>
       </div>
 
       <div className={`rounded-b-[15px] bg-white p-5 ${isShow ? 'block' : 'hidden'}`}>

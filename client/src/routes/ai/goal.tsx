@@ -41,15 +41,15 @@ function RouteComponent() {
         <>
           <AiCardForm
             presetKey={presetKey}
-            title={'Путь к цели от AI'}
+            title={'Путь к цели от AIvanna'}
             placeholder={'Опишите свою цель'}
-            buttonText={'УКАЗАТЬ ЦЕЛЬ'}
+            buttonText={'НАЧАТЬ ПУТЬ'}
             onSubmitted={onSubmitted}
           />
           <div className="mt-[35px]">
             <div className={'flex flex-col gap-[16px]'}>
               {isSuccess &&
-                dataAllGoal.map((goal) => (
+                dataAllGoal.map((goal: any) => (
                   <AiRequestCard
                     key={goal.id}
                     title={goal.title}

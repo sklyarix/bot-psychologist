@@ -47,8 +47,10 @@ export async function aiGoalWorker() {
       // Ставим уведомления
       const diffDays = Math.round((finishedAt - now) / (1000 * 60 * 60 * 24));
       for (let i = 2; i <= diffDays; i++) {
+        /*
         const target = new Date(now);
         target.setDate(target.getDate() + i);
+         */
         const message =
           i < 7
             ? `Открылся доступ по вашей цели за ${i} день`
@@ -57,7 +59,7 @@ export async function aiGoalWorker() {
           BOT_MESSAGE_QUEUE,
           { telegramId, message },
           {
-            startAfter: new Date(now.getTime() + 60_000 * 60 * 24 * i),
+            startAfter: new Date(now.getTime() + (i - 1) * 24 * 60 * 60 * 1000),
             retryLimit: 3,
             retryDelay: 60,
           },

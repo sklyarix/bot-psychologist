@@ -49,7 +49,7 @@ function RouteComponent() {
           <div className="mt-[35px]">
             <div className={'flex flex-col gap-[16px]'}>
               {isSuccess &&
-                dataAllQA.map((question) => (
+                dataAllQA.map((question: any) => (
                   <AiRequestCard
                     key={question.id}
                     title={question.question}

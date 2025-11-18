@@ -1,0 +1,27 @@
+import path from "path";
+import { fileURLToPath } from "url";
+
+export async function infoCommand(ctx) {
+  const text = `Здесь ты можешь выбрать тот формат, который подходит тебе сегодня.\n\n<b>1. 7-дневный путь к цели.</b>\nЭто структурированное сопровождение, в котором каждый день — маленький шаг к большему.\nКаждый день ты будешь получать рекомендацию по твоему запросу.\n\n<b>2. Прояснение вопроса.</b>\nЕсли у тебя есть точечная ситуация или сложность, бот поможет тебе её развернуть, увидеть глубинные причины и определить следующий шаг.\n\nЕсли в процессе у тебя появятся вопросы, то есть возможность связаться лично с Иванной, записавшись на консультацию.`;
+
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  const videoPath = path.join(
+    __dirname,
+    "..",
+    "..",
+    "assets",
+    "video",
+    "video-test.mp4",
+  );
+
+  await ctx.replyWithHTML(text);
+  await ctx.replyWithVideoNote({ source: videoPath });
+
+  /*
+  await ctx.replyWithVideoNote({
+    source: "./assets/video/video-test.mp4",
+  });
+  
+   */
+}
