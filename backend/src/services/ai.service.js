@@ -1,6 +1,7 @@
 import { OpenAI } from "openai";
 import { env } from "../../config/env.js";
 import { buildAIRequest } from "../config/ai-presets.js";
+import { prisma } from "../lib/prisma.js";
 
 export class AIService {
   constructor() {
@@ -12,13 +13,14 @@ export class AIService {
   async sendTimewebGPT({ presetKey, text }) {
     try {
       const messages = buildAIRequest({ presetKey, text });
+      console.log("messages =", messages);
 
       const result = await fetch(
         `https://agent.timeweb.cloud/api/v1/cloud-ai/agents/${env.TIMEWEBGPT_API_KEY}/v1/chat/completions`,
         {
           method: "POST",
           headers: {
-            Authorization: "",
+            Authorization: "Bearer " + env.TOKEN_TIMEWEB,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -27,6 +29,8 @@ export class AIService {
           }),
         },
       );
+
+      console.log("result =", result);
 
       if (result.ok) {
         const responseData = await result.json();
@@ -38,7 +42,7 @@ export class AIService {
           : String(content ?? "");
       }
     } catch (error) {
-      console.log(error);
+      console.log("error sendTimewebGPT = ", error);
     }
   }
 

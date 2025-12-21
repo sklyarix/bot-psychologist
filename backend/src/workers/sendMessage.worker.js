@@ -36,13 +36,13 @@ export async function sendMessageVideoWorker() {
       "video",
       "video-test.mp4",
     );
+    const bot = getBot();
     try {
-      const bot = getBot();
       await bot.telegram.sendVideoNote(telegramId, {
         source: videoPath,
       });
     } catch (e) {
-      console.error("[sendMessageVideoWorker] sendMessage error:", e);
+      await bot.telegram.sendVideo(telegramId, { source: videoPath });
     }
   });
 }

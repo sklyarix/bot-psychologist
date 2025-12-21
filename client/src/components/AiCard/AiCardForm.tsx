@@ -34,7 +34,7 @@ const AiCardForm = (props: IAiCardForm) => {
             }}
             rows={3}
             placeholder={placeholder}
-            className="border-navy w-full resize-none rounded-[14px] border bg-white p-4 text-[15px] leading-6 transition outline-none"
+            className="border-navy caret-navy w-full resize-none rounded-[14px] border bg-white p-4 text-[15px] leading-6 transition outline-none placeholder:opacity-100 placeholder:transition focus:placeholder:opacity-0"
           />
         </label>
 

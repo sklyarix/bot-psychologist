@@ -46,7 +46,6 @@ const AiAnswer: React.FC<AiAnswerProps> = ({
           return (
             <div key={day}>
               <h4 className="mb-2 text-xl font-semibold">{dayTitleRender(day)}</h4>
-
               {isUnlocked ? (
                 <div className="whitespace-pre-line">{body}</div>
               ) : (

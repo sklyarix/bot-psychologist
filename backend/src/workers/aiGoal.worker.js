@@ -34,9 +34,40 @@ export async function aiGoalWorker() {
         text: title,
       });
 
+      // ПРОВЕРКА: ответ от timeweb
+      if (!resultAi) {
+        // Обновляем данные и статусы
+        return prisma.$transaction(async (tx) => {
+          await tx.aiGoal.update({
+            where: { id: goalId },
+            data: {
+              description: "Технические неполадки. Скоро исправим.",
+              status: "completed",
+              finishedAt,
+            },
+          });
+        });
+      }
+
       console.log("[ai-goal worker] resultAi:", resultAi);
 
       const objectDays = splitPlanByDays(resultAi);
+      console.log("[ai-goal worker] objectDays:", objectDays);
+
+      // ПРОВЕРКА: корректный ли запрос пользователя
+      if (objectDays.length === 0) {
+        // Обновляем данные и статусы
+        return prisma.$transaction(async (tx) => {
+          await tx.aiGoal.update({
+            where: { id: goalId },
+            data: {
+              description: "Так не сработает. Напишите корректную цель",
+              status: "completed",
+              finishedAt,
+            },
+          });
+        });
+      }
       // Обновляем данные и статусы
       await prisma.$transaction(async (tx) => {
         await tx.aiGoal.update({
@@ -51,20 +82,43 @@ export async function aiGoalWorker() {
 
       // Ставим уведомления
       const diffDays = Math.round((finishedAt - now) / (1000 * 60 * 60 * 24));
-      for (let i = 2; i <= diffDays; i++) {
+      for (let i = 1; i <= diffDays; i++) {
         /*
         const target = new Date(now);
         target.setDate(target.getDate() + i);
          */
-        const message =
-          i < 7
-            ? `Открылся доступ по вашей цели за ${i} день`
-            : `А вот финальный день по вашей цели и у меня для вас есть предложение.`;
+        let message;
+        switch (i) {
+          case 1:
+            message = `Твой первый шаг открыт.\nСкорее действуй!`;
+            break;
+          case 2:
+            message = `Следующий шаг уже ждёт тебя.\nЧто из вчерашнего вызвало сопротивление? Обрати на это внимание.`;
+            break;
+          case 3:
+            message = `Третий шаг открыт. открыт.\nЧто теперь замечаешь в себе, чего раньше не получалось видеть?`;
+            break;
+          case 4:
+            message = `Можно двигаться дальше, но сначала подумай, что сейчас поддерживает тебя больше всего — и как ты это используешь?`;
+            break;
+          case 5:
+            message = `Следующий шаг доступен.\nКакое небольшое, но важное изменение ты уже чувствуешь?`;
+            break;
+          case 6:
+            message = `Ты близко к финалу и началу нового пути.\nЧто стало для тебя яснее за эти дни?`;
+            break;
+          case 7:
+            message = `Финальный шаг открыт.\nИ помни, что это только начало!`;
+            break;
+        }
+
         await boss.send(
           BOT_MESSAGE_QUEUE,
           { telegramId, message },
           {
-            startAfter: new Date(now.getTime() + (i - 1) * 24 * 60 * 60 * 1000),
+            startAfter: new Date(
+              now.getTime() + 60 * 1000 + (i - 1) * 24 * 60 * 60 * 1000,
+            ),
             retryLimit: 3,
             retryDelay: 60,
           },
@@ -75,9 +129,7 @@ export async function aiGoalWorker() {
             BOT_MESSAGE_VIDEO_QUEUE,
             { telegramId },
             {
-              startAfter: new Date(
-                now.getTime() + (i - 1) * 24 * 60 * 60 * 1000,
-              ),
+              startAfter: new Date(now.getTime() + 60 * 1000),
               retryLimit: 3,
               retryDelay: 60,
             },
