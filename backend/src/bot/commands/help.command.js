@@ -1,3 +1,6 @@
+import { Markup } from 'telegraf'
+import { env } from '../../env.js'
+
 export async function helpCommand(ctx) {
 	const keyboard = Markup.inlineKeyboard([
 		[
