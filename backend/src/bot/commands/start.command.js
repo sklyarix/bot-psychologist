@@ -7,7 +7,10 @@ export async function startCommand(ctx) {
 			Markup.button.webApp('Войти в кабинет', env.HOST),
 
 			//Markup.button.url('Войти в кабинет url', 'https://t.me/devpsychologist_bot?startapp'),
-			Markup.button.url('Записаться на консультацию', env.HOST)
+			Markup.button.url(
+				'Записаться на консультацию',
+				'https://ivannasapcho2.tilda.ws/'
+			)
 		]
 	])
 
