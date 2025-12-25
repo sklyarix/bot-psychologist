@@ -30,6 +30,10 @@ export class AIService {
         },
       );
 
+      //const text1 = await result.text();
+      //console.log("!!!!!!!!!!!!!!!!!!!");
+      //console.log(result.status, result.statusText, text1);
+
       console.log("result =", result);
 
       if (result.ok) {
