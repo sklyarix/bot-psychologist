@@ -22,6 +22,7 @@ model User {
 
   aiGoals          AiGoal[]
   AiQuestionAnswer AiQuestionAnswer[]
+  webVisits        WebVisit[]
 }
 
 model Job {
@@ -77,4 +78,65 @@ model AiQuestionAnswer {
   jobId String?
 
   @@map("Ai_Question_Answer")
+}
+
+/// Web visits from users to the webapp
+model WebVisit {
+  id        String   @id @default(uuid())
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?
+  visitedAt DateTime @default(now())
+
+  @@index([visitedAt])
+  @@index([userId, visitedAt])
+  @@map("web_visit")
+}
+
+/// Content pages for editable site content (HTML stored as text)
+model Page {
+  id    String @id @default(uuid())
+  slug  String @unique
+  title String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  fields          PageField[]
+  pageFieldGroups PageFieldGroup[]
+
+  @@map("pages")
+}
+
+/// Optional grouping of fields within a page (for sections or logical groups)
+model PageFieldGroup {
+  id        String   @id @default(uuid())
+  page      Page     @relation(fields: [pageId], references: [id])
+  pageId    String
+  name      String // идентификатор группы, например "hero_section", "about_section"
+  title     String? // отображаемый заголовок группы
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  fields PageField[]
+
+  @@index([pageId])
+  @@map("page_field_groups")
+}
+
+model PageField {
+  id           String          @id @default(uuid())
+  page         Page            @relation(fields: [pageId], references: [id])
+  pageId       String
+  pageGroup    PageFieldGroup? @relation(fields: [pageGroupId], references: [id])
+  pageGroupId  String?
+  name         String // field identifier, e.g. "hero_text", "about_body"
+  title        String // отображаемый заголовок в админке
+  html         String // HTML content
+  displayOrder Int             @default(0)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  @@index([pageId])
+  @@index([pageGroupId])
+  @@map("page_fields")
 }

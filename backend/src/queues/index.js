@@ -20,11 +20,13 @@ export async function stopBoss() {
 export const AI_GOAL_QUEUE = "ai-goal";
 export const AI_QA_QUEUE = "ai-qa";
 export const BOT_MESSAGE_QUEUE = "bot-message";
+export const BOT_MESSAGE_VIDEO_QUEUE = "bot-message-video";
 
 // Явно создаём очереди один раз при старте
 export async function startQueues() {
   const b = await getBoss();
   await Promise.all([
+    b.createQueue(BOT_MESSAGE_VIDEO_QUEUE),
     b.createQueue(BOT_MESSAGE_QUEUE),
     b.createQueue(AI_QA_QUEUE),
     b.createQueue(AI_GOAL_QUEUE),

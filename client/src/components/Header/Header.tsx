@@ -10,10 +10,7 @@ const Header = () => {
         <img src={logoUrl} alt="Логотип" className="h-[45px] w-auto" />
       </Link>
       {pathname !== '/about' && (
-        <Link
-          to="/about"
-          className="bg-navy font-unifix flex h-[45px] items-center justify-center rounded-[15px] px-6 py-4 text-xs leading-none text-white"
-        >
+        <Link to="/about" className="btn max-w-[150px]">
           инструкция
         </Link>
       )}
