@@ -1,17 +1,16 @@
-@import "tailwindcss";
-
+@import 'tailwindcss';
 
 /* Локальные шрифты */
 @font-face {
-  font-family: "ArsenicaTrial";
-  src: url("../fonts/ArsenicaTrial-Bold.ttf") format("truetype");
+  font-family: 'ArsenicaTrial';
+  src: url('../fonts/ArsenicaTrial-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "CirceRounded";
-  src: url("../fonts/CirceRounded-Regular.ttf") format("truetype");
+  font-family: 'CirceRounded';
+  src: url('../fonts/CirceRounded-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -26,41 +25,42 @@
 }
 */
 @theme {
-  --font-ars: "ArsenicaTrial", ui-sans-serif, system-ui, sans-serif;
-  --font-circe: "CirceRounded", ui-sans-serif, system-ui, sans-serif;
-  --color-sand: #EFEAE4;
-  --color-navy: #22434F;
-  --color-statusLoaded: #DBCC6E;
-  --color-statusCompleted: #00FF0B;
-  --color-statusFailed: #FF0000;
+  --font-ars: 'ArsenicaTrial', ui-sans-serif, system-ui, sans-serif;
+  --font-circe: 'CirceRounded', ui-sans-serif, system-ui, sans-serif;
+  --color-sand: #efeae4;
+  --color-navy: #22434f;
+  --color-statusLoaded: #dbcc6e;
+  --color-statusCompleted: #00ff0b;
+  --color-statusFailed: #ff0000;
 }
 /* --font-unifix: "UnifixSPDemo", ui-sans-serif, system-ui, sans-serif; */
 
-
 /* скрыть полосу прокрутки, но оставить скролл */
 @utility scrollbar-none {
-  -ms-overflow-style: none;   /* IE/Edge */
-  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 body {
   background-color: var(--color-sand);
   color: var(--color-navy);
   line-height: 1.2;
-  font-family: "CirceRounded", serif;
+  font-family: 'CirceRounded', serif;
 }
 /* для Blink/WebKit нужен отдельный селектор */
-.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
 
-.btn{
+.btn {
   display: block;
   padding: 10px 6px 8px 6px;
   width: 100%;
-  
+
   background-color: var(--color-navy);
   border-radius: 15px;
-  
-  font-family:"CirceRounded", serif;
+
+  font-family: 'CirceRounded', serif;
   font-size: 16px;
   font-weight: 500;
   text-transform: uppercase;

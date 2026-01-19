@@ -15,11 +15,11 @@ export class AIService {
 			//console.log('messages =', messages)
 
 			const result = await fetch(
-				`https://agent.timeweb.cloud/api/v1/cloud-ai/agents/${env.TIMEWEBGPT_API_KEY}/v1/chat/completions`,
+				`https://agent.timeweb.cloud/api/v1/cloud-ai/agents/${env.TIMEWEB_API_KEY}/v1/chat/completions`,
 				{
 					method: 'POST',
 					headers: {
-						Authorization: 'Bearer ' + env.TOKEN_TIMEWEB,
+						Authorization: 'Bearer ' + env.TIMEWEB_TOKEN,
 						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify({

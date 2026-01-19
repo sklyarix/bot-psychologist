@@ -1,4 +1,6 @@
 import { createFileRoute, useRouter } from '@tanstack/react-router';
+import { getFieldHtml, pagesId } from '../../cms/data.ts';
+import { useGetPageById } from '../hooks/cms/pages/usePages.ts';
 import imgUrl from './../assets/images/about.jpg';
 
 export const Route = createFileRoute('/about')({
@@ -6,6 +8,10 @@ export const Route = createFileRoute('/about')({
 });
 
 function About() {
+  // CMS
+  const { about } = pagesId;
+  const { data: aboutPage } = useGetPageById(about);
+
   const router = useRouter();
   const handleBackButton = () => {
     if (window.history.length > 1) {
@@ -14,28 +20,30 @@ function About() {
       router.navigate({ to: '/', replace: true });
     }
   };
+
+  if (!aboutPage) return null;
   return (
     <>
       <div className="overflow-hidden rounded-[15px] border border-white shadow-[1px_4px_4px_0_rgba(0,0,0,0.25)]">
         <img src={imgUrl} alt="" className="" />
         <div className="p-5">
-          <h2 className="font-ars mb-4 text-2xl uppercase">Инструкция</h2>
+          <h2 className="font-ars mb-4 text-2xl uppercase">
+            {getFieldHtml(aboutPage, 'info', 'title') ?? ''}
+          </h2>
 
           <div className="font-circe mb-4">
-            <p>
-              <b>Добро пожаловать.</b>
-            </p>
-            <p>
-              Здесь ты можешь работать со своими целями, состояниями и вопросами в формате 24/7. Я
-              опираюсь на современные психологические исследования, экзистенциальную философию и
-              коучинговые методы — и помогаю тебе видеть глубже, чем просто «что делать». Этот бот
-              не заменяет личную консультацию с психологом, но может стать твоей опорой в
-              размышлениях, поиске смысла и первых шагах к изменениям. Задай вопрос и начни путь,
-              получая подсказки каждый день на протяжении недели или решай точечные запросы.
-            </p>
+            <p>{getFieldHtml(aboutPage, 'info', 'description_1_1') ?? ''}</p>
+            <p>{getFieldHtml(aboutPage, 'info', 'description_1_2') ?? ''}</p>
+            <p>{getFieldHtml(aboutPage, 'info', 'description_1_3') ?? ''}</p>
+          </div>
+          <div className="font-circe mb-4">
+            <p>{getFieldHtml(aboutPage, 'info', 'description_2_1') ?? ''}</p>
+            <p>{getFieldHtml(aboutPage, 'info', 'description_2_2') ?? ''}</p>
+            <p>{getFieldHtml(aboutPage, 'info', 'description_2_3') ?? ''}</p>
+            <p>{getFieldHtml(aboutPage, 'info', 'description_2_4') ?? ''}</p>
           </div>
           <button onClick={handleBackButton} className="btn uppercase">
-            начать
+            {getFieldHtml(aboutPage, 'info', 'buttonText') ?? ''}
           </button>
         </div>
       </div>

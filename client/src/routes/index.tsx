@@ -1,24 +1,39 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { getFieldHtml, pagesId } from '../../cms/data.ts';
 import FeatureCard from '../components/FeatureCard/FeatureCard.tsx';
+import { useGetPageById } from '../hooks/cms/pages/usePages.ts';
+import { useVisit } from '../hooks/stats/useVisit.ts';
 
 export const Route = createFileRoute('/')({
   component: Index,
 });
 
 function Index() {
+  // CMS
+  const { home } = pagesId;
+  const { data: homePage } = useGetPageById(home);
+
+  useVisit();
+  if (!homePage) return null;
+
   return (
     <div className="flex flex-col gap-[25px]">
+      {JSON.stringify(homePage)}
       <FeatureCard
         name="/ai/goal"
-        title="Путь к цели"
-        description="Создам для вас персональный 7-дневный путь, основанный на современных психологических исследованиях и экзистенциальном подходе. Он поможет мягко прояснить направление, вернуть опору и сделать первые осмысленные шаги к желаемому."
-        buttonText="Начать путь"
+        title={getFieldHtml(homePage, 'сard_goal', 'title') ?? ''}
+        description_1={getFieldHtml(homePage, 'сard_goal', 'description_1') ?? ''}
+        description_2={getFieldHtml(homePage, 'сard_goal', 'description_2') ?? ''}
+        description_3={getFieldHtml(homePage, 'сard_goal', 'description_3') ?? ''}
+        buttonText={getFieldHtml(homePage, 'сard_goal', 'buttonText') ?? ''}
       />
       <FeatureCard
         name="/ai/qa"
-        title="Ответ на вопрос"
-        description="Задайте любой значимый для вас вопрос — я помогу увидеть ситуацию глубже. Вы получите ясный, бережный и точный ответ, который подскажет, куда двигаться дальше."
-        buttonText="Задать вопрос"
+        title={getFieldHtml(homePage, 'card_qa', 'title') ?? ''}
+        description_1={getFieldHtml(homePage, 'card_qa', 'description_1') ?? ''}
+        description_2={getFieldHtml(homePage, 'card_qa', 'description_2') ?? ''}
+        description_3={getFieldHtml(homePage, 'card_qa', 'description_3') ?? ''}
+        buttonText={getFieldHtml(homePage, 'card_qa', 'buttonText') ?? ''}
       />
     </div>
   );

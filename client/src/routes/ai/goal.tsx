@@ -8,11 +8,18 @@ import Loader from '../../components/Loader/Loader.tsx';
 import { useCreateGoal } from '../../hooks/ai/goal/useCreateGoal.ts';
 import { useGetAllGoal } from '../../hooks/ai/goal/useGetAllGoal.ts';
 
+import { getFieldHtml, pagesId } from '../../../cms/data.ts';
+import { useGetPageById } from '../../hooks/cms/pages/usePages.ts';
+
 export const Route = createFileRoute('/ai/goal')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
+  // CMS
+  const { ai_goal } = pagesId;
+  const { data: aiGoalPage } = useGetPageById(ai_goal);
+
   const presetKey = 'goal';
   const { data: dataAllGoal, isLoading, isError, isSuccess } = useGetAllGoal();
   const { mutate, isRefresh } = useCreateGoal();
@@ -33,6 +40,8 @@ function RouteComponent() {
   if (isLoading) {
     return <Loader />;
   }
+
+  if (!aiGoalPage) return null;
   return (
     <>
       {isRefresh ? (
@@ -41,9 +50,9 @@ function RouteComponent() {
         <>
           <AiCardForm
             presetKey={presetKey}
-            title={'Путь к цели от AIvanna'}
+            title={getFieldHtml(aiGoalPage, 'ai_goal', 'title') ?? ''}
             placeholder={'Опишите свою цель'}
-            buttonText={'НАЧАТЬ ПУТЬ'}
+            buttonText={getFieldHtml(aiGoalPage, 'ai_goal', 'button') ?? ''}
             onSubmitted={onSubmitted}
           />
           <div className="mt-[35px]">

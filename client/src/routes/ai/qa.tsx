@@ -7,11 +7,18 @@ import Loader from '../../components/Loader/Loader.tsx';
 import { useCreateQA } from '../../hooks/ai/qa/useCreateQA.ts';
 import { useGetAllQA } from '../../hooks/ai/qa/useGetAllQA.ts';
 
+import { getFieldHtml, pagesId } from '../../../cms/data.ts';
+import { useGetPageById } from '../../hooks/cms/pages/usePages.ts';
+
 export const Route = createFileRoute('/ai/qa')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
+  // CMS
+  const { ai_qa } = pagesId;
+  const { data: aiQAPage } = useGetPageById(ai_qa);
+
   const presetKey = 'qa';
   const { data: dataAllQA, isLoading, isError, isSuccess } = useGetAllQA();
   const { mutate, isRefresh } = useCreateQA();
@@ -33,6 +40,8 @@ function RouteComponent() {
     return <Loader />;
   }
 
+  if (!aiQAPage) return null;
+
   return (
     <>
       {isRefresh ? (
@@ -41,9 +50,9 @@ function RouteComponent() {
         <>
           <AiCardForm
             presetKey={presetKey}
-            title={'Ответ на вопрос'}
+            title={getFieldHtml(aiQAPage, 'ai_qa', 'title') ?? ''}
             placeholder={'Опишите свой вопрос'}
-            buttonText={'ЗАДАТЬ ВОПРОС'}
+            buttonText={getFieldHtml(aiQAPage, 'ai_goal', 'button') ?? ''}
             onSubmitted={onSubmitted}
           />
           <div className="mt-[35px]">
