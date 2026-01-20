@@ -10,18 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StatsRouteImport } from './routes/stats'
-import { Route as EditOldRouteImport } from './routes/edit-old'
 import { Route as EditRouteImport } from './routes/edit'
 import { Route as IndexRouteImport } from './routes/index'
 
 const StatsRoute = StatsRouteImport.update({
   id: '/stats',
   path: '/stats',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EditOldRoute = EditOldRouteImport.update({
-  id: '/edit-old',
-  path: '/edit-old',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EditRoute = EditRouteImport.update({
@@ -38,34 +32,30 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/edit': typeof EditRoute
-  '/edit-old': typeof EditOldRoute
   '/stats': typeof StatsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/edit': typeof EditRoute
-  '/edit-old': typeof EditOldRoute
   '/stats': typeof StatsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/edit': typeof EditRoute
-  '/edit-old': typeof EditOldRoute
   '/stats': typeof StatsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/edit' | '/edit-old' | '/stats'
+  fullPaths: '/' | '/edit' | '/stats'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/edit' | '/edit-old' | '/stats'
-  id: '__root__' | '/' | '/edit' | '/edit-old' | '/stats'
+  to: '/' | '/edit' | '/stats'
+  id: '__root__' | '/' | '/edit' | '/stats'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EditRoute: typeof EditRoute
-  EditOldRoute: typeof EditOldRoute
   StatsRoute: typeof StatsRoute
 }
 
@@ -76,13 +66,6 @@ declare module '@tanstack/react-router' {
       path: '/stats'
       fullPath: '/stats'
       preLoaderRoute: typeof StatsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/edit-old': {
-      id: '/edit-old'
-      path: '/edit-old'
-      fullPath: '/edit-old'
-      preLoaderRoute: typeof EditOldRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/edit': {
@@ -105,7 +88,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EditRoute: EditRoute,
-  EditOldRoute: EditOldRoute,
   StatsRoute: StatsRoute,
 }
 export const routeTree = rootRouteImport
