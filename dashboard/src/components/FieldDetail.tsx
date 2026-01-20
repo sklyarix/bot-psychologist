@@ -12,7 +12,7 @@ const FieldDetail = (props: IFieldDetailProps) => {
 	const { id, name, title, html } = props
 	const [value, setValue] = useState(html)
 	const [isShowMessage, setIsShowMessage] = useState(false)
-	const [isEditing, setIsEditing] = useState(false)
+	const [, setIsEditing] = useState(false)
 
 	const {
 		mutate: updatePageField,

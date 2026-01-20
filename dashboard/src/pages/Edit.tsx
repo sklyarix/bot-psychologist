@@ -11,7 +11,7 @@ const EditPage = () => {
 	// Состояния
 	const [selectedPageId, setSelectedPageId] = useState<stringOrNull>(null)
 	const [selectedGroupId, setSelectedGroupId] = useState<stringOrNull>(null)
-	const [selectedFieldId, setSelectedFieldId] = useState<stringOrNull>(null)
+	//const [selectedFieldId, setSelectedFieldId] = useState<stringOrNull>(null)
 
 	// Модальные окна
 	const [isShowModalCreatePage, setIsShowModalCreatePage] = useState(false)
