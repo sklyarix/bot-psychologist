@@ -39,7 +39,9 @@ export const getIdPage = async (req, res) => {
 		const page = await prisma.page.findUnique({
 			where: { id },
 			include: {
-				fields: true,
+				fields: {
+					orderBy: { displayOrder: 'asc' }
+				},
 				pageFieldGroups: true
 			}
 		})

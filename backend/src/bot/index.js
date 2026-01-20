@@ -4,7 +4,8 @@ import { helpCommand } from './commands/help.command.js'
 import { infoCommand } from './commands/info.command.js'
 import { startCommand } from './commands/start.command.js'
 
-const token = `${env.TG_BOT_TOKEN}/test`
+// /test
+const token = `${env.TG_BOT_TOKEN}`
 let bot = null
 
 export function initBot() {
