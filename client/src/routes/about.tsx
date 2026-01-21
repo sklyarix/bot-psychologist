@@ -32,14 +32,14 @@ function About() {
           </h2>
 
           <div className="font-circe mb-4">
-            <p>{getFieldHtml(aboutPage, 'info', 'description_1_1') ?? ''}</p>
-            <p>{getFieldHtml(aboutPage, 'info', 'description_1_2') ?? ''}</p>
+            <p className="mb-2">{getFieldHtml(aboutPage, 'info', 'description_1_1') ?? ''}</p>
+            <p className="mb-2">{getFieldHtml(aboutPage, 'info', 'description_1_2') ?? ''}</p>
             <p>{getFieldHtml(aboutPage, 'info', 'description_1_3') ?? ''}</p>
           </div>
           <div className="font-circe mb-4">
-            <p>{getFieldHtml(aboutPage, 'info', 'description_2_1') ?? ''}</p>
-            <p>{getFieldHtml(aboutPage, 'info', 'description_2_2') ?? ''}</p>
-            <p>{getFieldHtml(aboutPage, 'info', 'description_2_3') ?? ''}</p>
+            <p className="mb-2">{getFieldHtml(aboutPage, 'info', 'description_2_1') ?? ''}</p>
+            <p className="mb-2">{getFieldHtml(aboutPage, 'info', 'description_2_2') ?? ''}</p>
+            <p className="mb-2">{getFieldHtml(aboutPage, 'info', 'description_2_3') ?? ''}</p>
             <p>{getFieldHtml(aboutPage, 'info', 'description_2_4') ?? ''}</p>
           </div>
           <button onClick={handleBackButton} className="btn uppercase">

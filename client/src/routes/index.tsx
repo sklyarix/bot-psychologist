@@ -18,7 +18,6 @@ function Index() {
 
   return (
     <div className="flex flex-col gap-[25px]">
-      {JSON.stringify(homePage)}
       <FeatureCard
         name="/ai/goal"
         title={getFieldHtml(homePage, 'сard_goal', 'title') ?? ''}
