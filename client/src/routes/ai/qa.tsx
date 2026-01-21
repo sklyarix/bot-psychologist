@@ -52,7 +52,7 @@ function RouteComponent() {
             presetKey={presetKey}
             title={getFieldHtml(aiQAPage, 'ai_qa', 'title') ?? ''}
             placeholder={'Опишите свой вопрос'}
-            buttonText={getFieldHtml(aiQAPage, 'ai_goal', 'button') ?? ''}
+            buttonText={getFieldHtml(aiQAPage, 'ai_qa', 'button') ?? ''}
             onSubmitted={onSubmitted}
           />
           <div className="mt-[35px]">
