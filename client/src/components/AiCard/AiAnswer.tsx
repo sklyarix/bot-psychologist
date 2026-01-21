@@ -29,7 +29,8 @@ const AiAnswer: React.FC<AiAnswerProps> = ({
 
   // 2) Массив дней
   if (Array.isArray(answer)) {
-    const baseDate = startedAt ? new Date(startedAt) : undefined;
+    const baseDate = startedAt ? new Date(startedAt).setHours(9, 0, 0, 0) : undefined;
+
     const now = new Date();
 
     const sorted = [...answer].sort((a, b) => a.day - b.day);

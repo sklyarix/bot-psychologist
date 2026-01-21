@@ -8,7 +8,7 @@ const ai = new AIService()
 export async function aiGoalWorker() {
 	const boss = await getBoss()
 	await boss.work(AI_GOAL_QUEUE, { teamSize: 1 }, async ([job]) => {
-		console.log('[ai-goal worker] got job:', job.id, job.data)
+		//console.log('[ai-goal worker] got job:', job.id, job.data)
 
 		const { goalId, telegramId, title } = job.data
 
@@ -29,6 +29,8 @@ export async function aiGoalWorker() {
 				text: title
 			})
 
+			//console.log('resultAi:', resultAi)
+
 			// ПРОВЕРКА: ответ от timeweb
 			if (!resultAi) {
 				// Обновляем данные и статусы
@@ -44,10 +46,10 @@ export async function aiGoalWorker() {
 				})
 			}
 
-			console.log('[ai-goal worker] resultAi:', resultAi)
+			//console.log('[ai-goal worker] resultAi:', resultAi)
 
 			const objectDays = splitPlanByDays(resultAi)
-			console.log('[ai-goal worker] objectDays:', objectDays)
+			//console.log('[ai-goal worker] objectDays:', objectDays)
 
 			// ПРОВЕРКА: корректный ли запрос пользователя
 			if (objectDays.length === 0) {
