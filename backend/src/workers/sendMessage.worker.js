@@ -15,7 +15,7 @@ export async function sendMessageWorker() {
 		try {
 			const bot = getBot()
 			await bot.telegram.sendMessage(telegramId, message, {
-				reply_markup: inlineKeyboard
+				reply_markup: { inline_keyboard: inlineKeyboard }
 			})
 		} catch (e) {
 			console.error('[sendMessageWorker] sendMessage error:', e)
