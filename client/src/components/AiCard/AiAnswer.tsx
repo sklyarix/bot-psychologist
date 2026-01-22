@@ -40,7 +40,7 @@ const AiAnswer: React.FC<AiAnswerProps> = ({
         {sorted.map(({ day, body }) => {
           const availableAt =
             baseDate && lockBySchedule
-              ? new Date(baseDate.getTime() + (day - 1) * 24 * 60 * 60 * 1000)
+              ? new Date(baseDate + (day - 1) * 24 * 60 * 60 * 1000)
               : undefined;
           const isUnlocked = !availableAt || availableAt <= now;
 

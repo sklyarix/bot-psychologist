@@ -22,7 +22,9 @@ export async function aiGoalWorker() {
 
 		// Даты для целей
 		const now = new Date()
-		const finishedAt = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
+		const at9 = new Date(now)
+
+		const finishedAt = new Date(at9.getTime() + 7 * 24 * 60 * 60 * 1000)
 		try {
 			const resultAi = await ai.sendTimewebGPT({
 				presetKey: 'goal',
@@ -78,7 +80,7 @@ export async function aiGoalWorker() {
 			})
 
 			// Ставим уведомления
-			const diffDays = Math.round((finishedAt - now) / (1000 * 60 * 60 * 24))
+			const diffDays = 7
 			for (let i = 1; i <= diffDays; i++) {
 				/*
         const target = new Date(now);
@@ -110,7 +112,7 @@ export async function aiGoalWorker() {
 				}
 
 				const startAfter = new Date(
-					now.getTime() + 60 * 1000 + (i - 1) * 24 * 60 * 60 * 1000
+					at9.getTime() + 60 * 1000 + (i - 1) * 24 * 60 * 60 * 1000
 				).setHours(9, 0, 0, 0)
 
 				if (i === 3) {
