@@ -113,7 +113,7 @@ export async function aiGoalWorker() {
 
 				const startAfter = new Date(
 					at9.getTime() + 60 * 1000 + (i - 1) * 24 * 60 * 60 * 1000
-				).setHours(9, 0, 0, 0)
+				)
 
 				if (i === 3) {
 					await boss.send(
