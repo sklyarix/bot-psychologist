@@ -22,7 +22,8 @@ export async function aiGoalWorker() {
 
 		// Даты для целей
 		const now = new Date()
-		const at9 = new Date(now).setHours(9, 0, 0, 0)
+		const at9 = new Date(now)
+		at9.setHours(9, 0, 0, 0)
 
 		const finishedAt = new Date(at9.getTime() + 7 * 24 * 60 * 60 * 1000)
 		try {
