@@ -22,7 +22,7 @@ export async function aiGoalWorker() {
 
 		// Даты для целей
 		const now = new Date()
-		const at9 = new Date(now)
+		const at9 = new Date(now).setHours(9, 0, 0, 0)
 
 		const finishedAt = new Date(at9.getTime() + 7 * 24 * 60 * 60 * 1000)
 		try {
@@ -81,13 +81,13 @@ export async function aiGoalWorker() {
 
 			// Ставим уведомления
 			const diffDays = 7
-			for (let i = 1; i <= diffDays; i++) {
+			for (let day = 1; day <= diffDays; i++) {
 				/*
         const target = new Date(now);
         target.setDate(target.getDate() + i);
          */
 				let message
-				switch (i) {
+				switch (day) {
 					case 1:
 						message = `Твой первый шаг открыт.\nСкорее действуй!`
 						break
@@ -111,11 +111,15 @@ export async function aiGoalWorker() {
 						break
 				}
 
-				const startAfter = new Date(
-					at9.getTime() + 60 * 1000 + (i - 1) * 24 * 60 * 60 * 1000
-				)
+				// начисляем день
+				const startAfter =
+					day != 1
+						? new Date(at9.getTime() + (i - 1) * 24 * 60 * 60 * 1000)
+						: now
 
-				if (i === 3) {
+				console.log(i, 'Date =', Date(startAfter))
+
+				if (day === 3) {
 					await boss.send(
 						BOT_MESSAGE_QUEUE,
 						{
@@ -136,7 +140,7 @@ export async function aiGoalWorker() {
 							retryDelay: 60
 						}
 					)
-				} else if (i === diffDays) {
+				} else if (day === diffDays) {
 					await boss.send(
 						BOT_MESSAGE_QUEUE,
 						{
