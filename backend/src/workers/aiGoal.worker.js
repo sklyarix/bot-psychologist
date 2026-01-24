@@ -112,11 +112,6 @@ export async function aiGoalWorker() {
 						break
 				}
 
-				const text = encodeURIComponent(
-					'Привет! Хочу записаться на консультацию. Удобно ли сегодня?'
-				)
-				const url = encodeURIComponent('https://t.me/ivannasapcho')
-
 				// начисляем день
 				const startAfter =
 					day != 1
@@ -135,7 +130,7 @@ export async function aiGoalWorker() {
 								[
 									{
 										text: 'Задать вопрос Иванне',
-										url: `https://t.me/share/url?url=${url}&text=${text}`
+										url: 'https://t.me/ivannasapcho'
 									}
 								]
 							]
@@ -156,7 +151,7 @@ export async function aiGoalWorker() {
 								[
 									{
 										text: 'Записаться на консультацию',
-										url: `https://t.me/share/url?url=${url}&text=${text}`
+										url: 'https://t.me/ivannasapcho'
 									}
 								]
 							]
