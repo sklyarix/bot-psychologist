@@ -82,7 +82,7 @@ export async function aiGoalWorker() {
 
 			// Ставим уведомления
 			const diffDays = 7
-			for (let day = 1; day <= diffDays; i++) {
+			for (let day = 1; day <= diffDays; day++) {
 				/*
         const target = new Date(now);
         target.setDate(target.getDate() + i);
@@ -112,13 +112,18 @@ export async function aiGoalWorker() {
 						break
 				}
 
+				const text = encodeURIComponent(
+					'Привет! Хочу записаться на консультацию. Удобно ли сегодня?'
+				)
+				const url = encodeURIComponent('https://t.me/ivannasapcho')
+
 				// начисляем день
 				const startAfter =
 					day != 1
-						? new Date(at9.getTime() + (i - 1) * 24 * 60 * 60 * 1000)
+						? new Date(at9.getTime() + (day - 1) * 24 * 60 * 60 * 1000)
 						: now
 
-				console.log(i, 'Date =', Date(startAfter))
+				//console.log(day, 'Date =', startAfter.getTime())
 
 				if (day === 3) {
 					await boss.send(
@@ -130,7 +135,7 @@ export async function aiGoalWorker() {
 								[
 									{
 										text: 'Задать вопрос Иванне',
-										url: 'https://t.me/ivannasapcho'
+										url: `https://t.me/share/url?url=${url}&text=${text}`
 									}
 								]
 							]
@@ -151,7 +156,7 @@ export async function aiGoalWorker() {
 								[
 									{
 										text: 'Записаться на консультацию',
-										url: 'https://t.me/ivannasapcho'
+										url: `https://t.me/share/url?url=${url}&text=${text}`
 									}
 								]
 							]
