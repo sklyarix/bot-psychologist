@@ -2,6 +2,24 @@ import { Markup } from 'telegraf'
 import { env } from '../../../config/env.js'
 
 export async function startCommand(ctx) {
+	// ID канала для проверки подписки
+	const channelUsername = '@sklyarix'
+
+	// Проверяем, является ли пользователь подписчиком канала
+	const member = await ctx.telegram.getChatMember(channelUsername, ctx.from.id)
+	if (
+		member.status !== 'member' &&
+		member.status !== 'administrator' &&
+		member.status !== 'creator'
+	) {
+		const keyboard = Markup.inlineKeyboard([
+			[Markup.button.url('Подписаться в канал', 'https://t.me/sklyarix')]
+		])
+		const textIsCheckSub = `Для того чтобы продолжить, нужно подписаться на канал "Экзистенция на полке". Пожалуйста, подпишитесь, и затем отправьте команду для продолжения.`
+		await ctx.replyWithHTML(textIsCheckSub, keyboard)
+		return
+	}
+
 	const keyboard = Markup.inlineKeyboard([
 		[
 			Markup.button.webApp('Войти в кабинет', env.HOST),
