@@ -1,3 +1,4 @@
+import { isValid, parse } from '@telegram-apps/init-data-node'
 import { env } from '../../config/env.js'
 
 // @desc
