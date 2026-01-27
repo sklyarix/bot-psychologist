@@ -11,6 +11,7 @@ export const env = {
 	DATABASE_URL: process.env.DATABASE_URL,
 	TIMEWEB_API_KEY: process.env.TIMEWEB_API_KEY,
 	OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+	CHANNEL_USERNAME: process.env.CHANNEL_USERNAME,
 	TG_BOT_TOKEN:
 		process.env.TYPE == 'dev'
 			? process.env.TG_BOT_TOKEN_DEV

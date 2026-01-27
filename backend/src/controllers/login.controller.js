@@ -1,6 +1,7 @@
 import { isValid, parse } from '@telegram-apps/init-data-node'
 import { env } from '../../config/env.js'
 import { generateToken } from '../helpers/generateToken.js'
+import { getSubscriptionCheck } from '../helpers/getSubscriptionCheck.js'
 import { prisma } from '../lib/prisma.js'
 
 //import { addPersonalJob } from "../queue.js";
@@ -31,6 +32,9 @@ export const login = async (req, res) => {
 		if (!user) {
 			return res.status(400).send({ error: 'AUTH__INVALID_INITDATA' })
 		}
+
+		const isSub = await getSubscriptionCheck(env.CHANNEL_USERNAME, user.id)
+
 		const currentDate = new Date()
 		const userData = await prisma.user.upsert({
 			where: {
@@ -59,6 +63,7 @@ export const login = async (req, res) => {
 		const token = generateToken(userData.id)
 		return res.json({
 			token,
+			isSub: isSub,
 			user: userData
 		})
 	} catch (error) {

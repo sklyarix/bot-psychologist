@@ -13,7 +13,7 @@ export async function startCommand(ctx) {
 		member.status !== 'creator'
 	) {
 		const keyboard = Markup.inlineKeyboard([
-			[Markup.button.url('Подписаться в канал', 'https://t.me/sklyarix')]
+			[Markup.button.url('Подписаться на канал', 'https://t.me/sklyarix')]
 		])
 		const textIsCheckSub = `Для того чтобы продолжить, нужно подписаться на канал "Экзистенция на полке". Пожалуйста, подпишитесь, и затем отправьте команду для продолжения.`
 		await ctx.replyWithHTML(textIsCheckSub, keyboard)
