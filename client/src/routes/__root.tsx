@@ -31,17 +31,23 @@ const RootLayout = () => {
   if (!dataAuth || !dataAuth.isSub) {
     return (
       <div>
-        <p>
-          Для того чтобы продолжить, нужно подписаться на канал "Экзистенция на полке". Пожалуйста,
-          подпишитесь, и затем отправьте команду для продолжения.
-        </p>
-        <button
-          onClick={() => {
-            window.location.href = 'https://t.me/sklyarix';
-          }}
-        >
-          Подписаться на канал
-        </button>
+        <div className="rounded-[15px] border border-white p-5 shadow-[1px_4px_4px_0_rgba(0,0,0,0.25)]">
+          <h2 className="font-ars mb-4 text-2xl">Подпишись</h2>
+
+          <div className="font-circe mb-4">
+            Для того чтобы продолжить, нужно подписаться на канал "Экзистенция на полке".
+            Пожалуйста, подпишитесь, и затем отправьте команду для продолжения.
+          </div>
+
+          <button
+            className="btn"
+            onClick={() => {
+              window.location.href = 'https://t.me/sklyarix';
+            }}
+          >
+            Подписаться на канал
+          </button>
+        </div>
       </div>
     );
   }
