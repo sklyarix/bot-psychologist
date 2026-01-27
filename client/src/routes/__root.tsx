@@ -7,6 +7,8 @@ import { useLogin } from '../hooks/useLogin.ts';
 import { useTg, useTgBackButton } from '../hooks/useTg.ts';
 
 const RootLayout = () => {
+  const chanelUser = import.meta.env.CHANNEL_USERNAME;
+
   const { isTg, webApp } = useTg();
   useFirstLaunchRedirect();
   useTgBackButton();
@@ -42,7 +44,7 @@ const RootLayout = () => {
           <button
             className="btn"
             onClick={() => {
-              window.location.href = 'https://t.me/sklyarix';
+              window.location.href = `https://t.me/${chanelUser}`;
             }}
           >
             Подписаться на канал
