@@ -12,8 +12,23 @@ const RootLayout = () => {
   useTgBackButton();
   const { data: dataAuth, isLoading: isLoadingAuth, error: errorAuth } = useLogin(webApp);
   console.log(dataAuth);
+
+  // Проверка на запуск в Telegram
+  if (!isTg) {
+    return (
+      <div>
+        <h1>Ошибка</h1>
+        <p>Приложение работает только в TG</p>
+      </div>
+    );
+  }
+
+  //  Loading
+  if (isLoadingAuth) return <Loader />;
+
   // Проверка подписок
-  if (!dataAuth.isSub) {
+
+  if (!dataAuth || !dataAuth.isSub) {
     return (
       <div>
         <p>
@@ -30,21 +45,6 @@ const RootLayout = () => {
       </div>
     );
   }
-
-  // Проверка на запуск в Telegram
-  if (!isTg) {
-    return (
-      <div>
-        <h1>Ошибка</h1>
-        <p>Приложение работает только в TG</p>
-      </div>
-    );
-  }
-
-  //  Loading
-  if (isLoadingAuth) return <Loader />;
-
-  //  Error
 
   if (errorAuth)
     return (

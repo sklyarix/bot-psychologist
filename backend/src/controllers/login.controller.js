@@ -61,6 +61,9 @@ export const login = async (req, res) => {
 		})
 
 		const token = generateToken(userData.id)
+
+		console.log(JSON.stringify({ token, isSub: isSub, user: userData }))
+
 		return res.json({
 			token,
 			isSub: isSub,
