@@ -14,6 +14,8 @@ export function initBot() {
 	bot.command('help', ctx => helpCommand(ctx))
 	bot.command('info', ctx => infoCommand(ctx))
 
+	bot.action('info', ctx => infoCommand(ctx))
+
 	bot.launch().then(() => console.log('Bot launched (polling)'))
 
 	return bot
