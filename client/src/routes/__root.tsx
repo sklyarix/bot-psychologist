@@ -7,7 +7,7 @@ import { useLogin } from '../hooks/useLogin.ts';
 import { useTg, useTgBackButton } from '../hooks/useTg.ts';
 
 const RootLayout = () => {
-  const chanelUser = import.meta.env.CHANNEL_USERNAME;
+  const chanelUser = import.meta.env.VITE_CHANNEL_USERNAME;
 
   const { isTg, webApp } = useTg();
   useFirstLaunchRedirect();

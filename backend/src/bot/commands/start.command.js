@@ -3,7 +3,7 @@ import { env } from '../../../config/env.js'
 
 export async function startCommand(ctx) {
 	// ID канала для проверки подписки
-	const channelUsername = '@sklyarix'
+	const channelUsername = env.CHANNEL_USERNAME
 
 	// Проверяем, является ли пользователь подписчиком канала
 	const member = await ctx.telegram.getChatMember(channelUsername, ctx.from.id)
@@ -13,7 +13,12 @@ export async function startCommand(ctx) {
 		member.status !== 'creator'
 	) {
 		const keyboard = Markup.inlineKeyboard([
-			[Markup.button.url('Подписаться на канал', 'https://t.me/sklyarix')]
+			[
+				Markup.button.url(
+					'Подписаться на канал',
+					`https://t.me/${channelUsername.slice(1)}`
+				)
+			]
 		])
 		const textIsCheckSub = `Для того чтобы продолжить, нужно подписаться на канал "Экзистенция на полке". Пожалуйста, подпишитесь, и затем отправьте команду для продолжения.`
 		await ctx.replyWithHTML(textIsCheckSub, keyboard)
