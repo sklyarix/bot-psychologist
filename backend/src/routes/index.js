@@ -31,20 +31,15 @@ import {
 	getIdPage,
 	updatePage
 } from '../controllers/cms/pages.controller.js'
-import { getSubscriptionCheck } from '../controllers/getSubscriptionCheck.controller.js'
 import { login } from '../controllers/login.controller.js'
-import { createVisit, getAllVisits } from '../controllers/visit.controller.js'
+import { createVisit } from '../controllers/visit.controller.js'
 import { auth } from '../middlewares/auth.middleware.js'
 
 const index = Router()
 
 index.route('/login').post(login)
-index.route('/subscription/check').get(getSubscriptionCheck)
 // stats
 index.route('/stats/visit').post(auth, createVisit)
-
-// TODO: remove auth for testing purpose
-index.route('/stats/visit').get(getAllVisits)
 
 //CMS
 // TODO: remove auth for testing purpose

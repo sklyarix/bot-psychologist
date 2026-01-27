@@ -12,6 +12,25 @@ const RootLayout = () => {
   useTgBackButton();
   const { data: dataAuth, isLoading: isLoadingAuth, error: errorAuth } = useLogin(webApp);
   console.log(dataAuth);
+  // Проверка подписок
+  if (!dataAuth.isSub) {
+    return (
+      <div>
+        <p>
+          Для того чтобы продолжить, нужно подписаться на канал "Экзистенция на полке". Пожалуйста,
+          подпишитесь, и затем отправьте команду для продолжения.
+        </p>
+        <button
+          onClick={() => {
+            window.location.href = 'https://t.me/sklyarix';
+          }}
+        >
+          Подписаться на канал
+        </button>
+      </div>
+    );
+  }
+
   // Проверка на запуск в Telegram
   if (!isTg) {
     return (
