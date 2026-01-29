@@ -32,17 +32,21 @@ import {
 	updatePage
 } from '../controllers/cms/pages.controller.js'
 import { login } from '../controllers/login.controller.js'
-import { createVisit } from '../controllers/visit.controller.js'
+import {
+	createVisit,
+	getAllVisits
+} from '../controllers/stats/visit.controller.js'
 import { auth } from '../middlewares/auth.middleware.js'
 
+// TODO: auth для админки
 const index = Router()
 
 index.route('/login').post(login)
+
 // stats
 index.route('/stats/visit').post(auth, createVisit)
-
+index.route('/stats/visit').get(getAllVisits)
 //CMS
-// TODO: remove auth for testing purpose
 
 // pages
 index.route('/cms/pages').post(createPage)

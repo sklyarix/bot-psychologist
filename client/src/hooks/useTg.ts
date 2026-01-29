@@ -10,7 +10,6 @@ export const useTg = () => {
   useEffect(() => {
     const initUser = () => {
       const tg = window.Telegram.WebApp;
-      console.log('TGG =', tg.initDataUnsafe);
       if (tg) {
         setWebApp(tg);
         const isValidTgData =

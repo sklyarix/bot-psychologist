@@ -13,7 +13,6 @@ const RootLayout = () => {
   useFirstLaunchRedirect();
   useTgBackButton();
   const { data: dataAuth, isLoading: isLoadingAuth, error: errorAuth } = useLogin(webApp);
-  console.log(dataAuth);
 
   // Проверка на запуск в Telegram
   if (!isTg) {

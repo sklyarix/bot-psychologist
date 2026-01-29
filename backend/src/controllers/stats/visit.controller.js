@@ -1,6 +1,9 @@
-import { prisma } from '../lib/prisma.js'
+import { prisma } from '../../lib/prisma.js'
 
-// POST /api/stats/visit
+//TODO: access должен быть Private
+// @desc Записывает посещение
+// @route POST /api/stats/visit
+// @access Public
 export const createVisit = async (req, res) => {
 	try {
 		const { userId } = req.user
@@ -18,7 +21,10 @@ export const createVisit = async (req, res) => {
 	}
 }
 
-// GET /api/stats/visit
+//TODO: access должен быть Private
+// @desc Получить все посещения
+// @route GET /api/stats/visit
+// @access Public
 export const getAllVisits = async (req, res) => {
 	try {
 		const visits = await prisma.webVisit.findMany({

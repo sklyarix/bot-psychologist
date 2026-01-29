@@ -6,6 +6,7 @@ dotenv.config({ path: resolve(process.cwd(), '.env') })
 export const env = {
 	HOST: process.env.HOST,
 	PORT: process.env.PORT,
+	TYPE_DEV: process.env.TYPE_DEV,
 	JWT_SECRET: process.env.JWT_SECRET,
 	WEBHOOK_DOMAIN: process.env.WEBHOOK_DOMAIN,
 	DATABASE_URL: process.env.DATABASE_URL,
@@ -13,7 +14,7 @@ export const env = {
 	OPENAI_API_KEY: process.env.OPENAI_API_KEY,
 	CHANNEL_USERNAME: process.env.CHANNEL_USERNAME,
 	TG_BOT_TOKEN:
-		process.env.TYPE == 'dev'
+		process.env.TYPE_DEV == 'dev'
 			? process.env.TG_BOT_TOKEN_DEV
 			: process.env.TG_BOT_TOKEN_PROD,
 	TIMEWEB_TOKEN: process.env.TIMEWEB_TOKEN

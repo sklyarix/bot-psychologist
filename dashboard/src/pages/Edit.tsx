@@ -20,12 +20,7 @@ const EditPage = () => {
 
 	const { data: pages, isLoading } = useGetAllPages()
 
-	const { data: pageDetail, isSuccess: isPageIdSuccess } =
-		useGetPageById(selectedPageId)
-
-	//if (isSuccess) console.log(pages)
-	if (isPageIdSuccess) console.log(pageDetail)
-	//useEffect(() => {}, [selectedPageId])
+	const { data: pageDetail } = useGetPageById(selectedPageId)
 
 	return isLoading ? (
 		<p>Загрузка...</p>

@@ -10,7 +10,7 @@ export const createAiGoal = async (req, res) => {
 		const { title } = req.body
 
 		if (!title) {
-			console.log('title are required')
+			console.error('title are required')
 			return res.status(400).json({ error: 'title are required' })
 		}
 
@@ -30,8 +30,6 @@ export const createAiGoal = async (req, res) => {
 			telegramId,
 			title
 		})
-
-		console.log('[publish] ai-goal bossJobId:', jobIdBoss)
 
 		return res.status(201).json({
 			goal,

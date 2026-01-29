@@ -1,6 +1,9 @@
 import { prisma } from '../../lib/prisma.js'
 
-// POST /api/cms/page-fields
+//TODO: access должен быть Private
+// @desc Создает поле для контента
+// @route POST /api/cms/page-fields
+// @access Public
 export const createPageField = async (req, res) => {
 	try {
 		const { pageId, title, pageGroupId, name, html, displayOrder } = req.body
@@ -23,7 +26,10 @@ export const createPageField = async (req, res) => {
 	}
 }
 
-// GET /api/cms/page-fields
+//TODO: access должен быть Private
+// @desc Получает все поля для контента
+// @route GET /api/cms/page-fields
+// @access Public
 export const getAllPageFields = async (req, res) => {
 	try {
 		const pageFields = await prisma.pageField.findMany()
@@ -35,7 +41,10 @@ export const getAllPageFields = async (req, res) => {
 	}
 }
 
-// GET /api/cms/page-fields/:id
+//TODO: access должен быть Private
+// @desc Получает поле для контента по id
+// @route GET /api/cms/page-fields/:id
+// @access Public
 export const getIdPageField = async (req, res) => {
 	try {
 		const { id } = req.params
@@ -54,7 +63,11 @@ export const getIdPageField = async (req, res) => {
 		return res.status(500).json({ success: false, error: 'internal_error' })
 	}
 }
-// PUT /api/cms/page-fields/:id
+
+//TODO: access должен быть Private
+// @desc Изменяет поле для контента по id
+// @route PUT /api/cms/page-fields/:id
+// @access Public
 export const updatePageField = async (req, res) => {
 	try {
 		const { id } = req.params
@@ -79,7 +92,10 @@ export const updatePageField = async (req, res) => {
 	}
 }
 
-// DELETE /api/cms/page-fields/:id
+//TODO: access должен быть Private
+// @desc Удаляет поле для контента по id
+// @route DELETE /api/cms/page-fields/:id
+// @access Public
 export const deletePageField = async (req, res) => {
 	try {
 		const { id } = req.params

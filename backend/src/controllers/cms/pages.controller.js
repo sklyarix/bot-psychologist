@@ -1,6 +1,9 @@
 import { prisma } from '../../lib/prisma.js'
 
-// POST /api/cms/pages
+//TODO: access должен быть Private
+// @desc Создает страницу для админки
+// @route POST /api/cms/pages
+// @access Public
 export const createPage = async (req, res) => {
 	try {
 		const { title, slug } = req.body
@@ -19,7 +22,10 @@ export const createPage = async (req, res) => {
 	}
 }
 
-// GET /api/cms/pages
+//TODO: access должен быть Private
+// @desc Получает все страницы
+// @route GET /api/cms/pages
+// @access Public
 export const getAllPages = async (req, res) => {
 	try {
 		const pages = await prisma.page.findMany()
@@ -31,7 +37,10 @@ export const getAllPages = async (req, res) => {
 	}
 }
 
-// GET /api/cms/pages:id
+//TODO: access должен быть Private
+// @desc Получает страницу по id
+// @route GET /api/cms/pages:id
+// @access Public
 export const getIdPage = async (req, res) => {
 	try {
 		const { id } = req.params
@@ -57,7 +66,10 @@ export const getIdPage = async (req, res) => {
 	}
 }
 
-// PUT /api/cms/pages/:id
+//TODO: access должен быть Private
+// @desc Редактирует страницу по id
+// @route PUT /api/cms/pages/:id
+// @access Public
 export const updatePage = async (req, res) => {
 	try {
 		const { id } = req.params
@@ -78,7 +90,10 @@ export const updatePage = async (req, res) => {
 	}
 }
 
-// DELETE /api/cms/pages/:id
+//TODO: access должен быть Private
+// @desc Удаляет страницу по id
+// @route DELETE /api/cms/pages/:id
+// @access Public
 export const deletePage = async (req, res) => {
 	try {
 		const { id } = req.params

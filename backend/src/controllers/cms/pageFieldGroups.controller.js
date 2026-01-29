@@ -1,6 +1,9 @@
 import { prisma } from '../../lib/prisma.js'
 
-// POST /api/cms/page-field-groups
+//TODO: access должен быть Private
+// @desc Создает группу для страниц в админке
+// @route POST /api/cms/page-field-groups
+// @access Public
 export const createPageFieldGroup = async (req, res) => {
 	try {
 		const { pageId, name, title, displayOrder } = req.body
@@ -21,7 +24,10 @@ export const createPageFieldGroup = async (req, res) => {
 	}
 }
 
-// GET /api/cms/page-field-groups
+//TODO: access должен быть Private
+// @desc Получает все группы для страниц страницы
+// @route GET /api/cms/page-field-groups
+// @access Public
 export const getAllPageFieldGroups = async (req, res) => {
 	try {
 		const pageFieldGroups = await prisma.pageFieldGroup.findMany()
@@ -33,7 +39,10 @@ export const getAllPageFieldGroups = async (req, res) => {
 	}
 }
 
-// GET /api/cms/page-field-groups/:id
+//TODO: access должен быть Private
+// @desc Получает группу для страниц по id
+// @route GET /api/cms/page-field-groups/:id
+// @access Public
 export const getIdPageFieldGroup = async (req, res) => {
 	try {
 		const { id } = req.params
@@ -52,7 +61,10 @@ export const getIdPageFieldGroup = async (req, res) => {
 	}
 }
 
-// PUT /api/cms/page-field-groups/:id
+//TODO: access должен быть Private
+// @desc Изменяет группу для страниц по id
+// @route PUT /api/cms/page-field-groups/:id
+// @access Public
 export const updatePageFieldGroup = async (req, res) => {
 	try {
 		const { id } = req.params
@@ -74,7 +86,11 @@ export const updatePageFieldGroup = async (req, res) => {
 	}
 }
 
-// DELETE /api/cms/page-field-groups/:id
+//TODO: access должен быть Private
+//TODO: при удалении удаляются и записи связанные
+// @desc Удаляет группу для страниц по id
+// @route DELETE /api/cms/page-field-groups/:id
+// @access Public
 export const deletePageFieldGroup = async (req, res) => {
 	try {
 		const { id } = req.params

@@ -4,8 +4,6 @@ import { generateToken } from '../helpers/generateToken.js'
 import { getSubscriptionCheck } from '../helpers/getSubscriptionCheck.js'
 import { prisma } from '../lib/prisma.js'
 
-//import { addPersonalJob } from "../queue.js";
-
 // @desc Обновить и создать пользователя
 // @route post /api/login
 // @access Public
@@ -62,15 +60,13 @@ export const login = async (req, res) => {
 
 		const token = generateToken(userData.id)
 
-		console.log(JSON.stringify({ token, isSub: isSub, user: userData }))
-
 		return res.json({
 			token,
 			isSub: isSub,
 			user: userData
 		})
 	} catch (error) {
-		console.log('Ошибка /api/login =', error)
+		console.error('Ошибка /api/login =', error)
 		return res.status(500).json({ error: 'internal_error' })
 	}
 }
