@@ -6,7 +6,7 @@ import { prisma } from '../../lib/prisma.js'
 // @access Public
 export const createVisit = async (req, res) => {
 	try {
-		const { userId } = req.user
+		const { id: userId } = req.user
 
 		const visit = await prisma.webVisit.create({
 			data: {
