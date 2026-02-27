@@ -2,6 +2,7 @@ import { isValid, parse } from '@telegram-apps/init-data-node'
 import { env } from '../../config/env.js'
 import { generateToken } from '../helpers/generateToken.js'
 import { getSubscriptionCheck } from '../helpers/getSubscriptionCheck.js'
+import { prisma } from '../lib/prisma.js'
 
 // @desc Обновить и создать пользователя
 // @route post /api/login
