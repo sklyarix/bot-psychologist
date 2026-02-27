@@ -18,8 +18,7 @@ export default function UserRow({ user, onSelect }: Props) {
 			onClick={() => onSelect?.(user)}
 			onKeyDown={e => {
 				if (e.key === 'Enter' || e.key === ' ') onSelect?.(user)
-			}}
-		>
+			}}>
 			<div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
 				<LiaUser />
 			</div>
@@ -36,7 +35,7 @@ export default function UserRow({ user, onSelect }: Props) {
 					{user.isPremium ? 'Premium' : ''}
 				</div>
 				<div className="text-xs text-gray-500">
-					{new Date(user.lastActive).toLocaleString()}
+					{new Date(user.updatedAt).toLocaleString()}
 				</div>
 			</div>
 		</div>
