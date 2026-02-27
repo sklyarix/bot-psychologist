@@ -4,6 +4,7 @@
 	"dependencies": {
 		"@prisma/client": "^6.16.2",
 		"@telegram-apps/init-data-node": "^2.0.10",
+		"axios": "^1.13.5",
 		"bullmq": "^5.60.0",
 		"cors": "^2.8.5",
 		"dotenv": "^17.2.2",

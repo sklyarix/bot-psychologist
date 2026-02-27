@@ -1,17 +1,15 @@
 import { Markup } from 'telegraf'
 import { env } from '../../../config/env.js'
+import { getSubscriptionCheck } from '../../helpers/getSubscriptionCheck.js'
 
 export async function startCommand(ctx) {
 	// ID канала для проверки подписки
 	const channelUsername = env.CHANNEL_USERNAME
 
 	// Проверяем, является ли пользователь подписчиком канала
-	const member = await ctx.telegram.getChatMember(channelUsername, ctx.from.id)
-	if (
-		member.status !== 'member' &&
-		member.status !== 'administrator' &&
-		member.status !== 'creator'
-	) {
+	const isSub = await getSubscriptionCheck(env.CHANNEL_USERNAME, ctx.from.id)
+
+	if (!isSub) {
 		const keyboard = Markup.inlineKeyboard([
 			[
 				Markup.button.url(

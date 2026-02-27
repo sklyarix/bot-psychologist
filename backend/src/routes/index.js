@@ -11,6 +11,10 @@ import {
 	getIdAiQA
 } from '../controllers/aiQA.controller.js'
 import {
+	enqueueBotMessage,
+	enqueueBotMessageVideo
+} from '../controllers/bot/messages.controller.js'
+import {
 	createPageFieldGroup,
 	deletePageFieldGroup,
 	getAllPageFieldGroups,
@@ -36,6 +40,8 @@ import {
 	createVisit,
 	getAllVisits
 } from '../controllers/stats/visit.controller.js'
+import { getAllUsers } from '../controllers/users.controller.js'
+import { getUserStats } from '../controllers/users.stats.controller.js'
 import { auth } from '../middlewares/auth.middleware.js'
 
 // TODO: auth для админки
@@ -43,9 +49,18 @@ const index = Router()
 
 index.route('/login').post(login)
 
+//users
+index.route('/users').get(getAllUsers)
+
 // stats
 index.route('/stats/visit').post(auth, createVisit)
 index.route('/stats/visit').get(getAllVisits)
+// bot messages
+index.route('/bot/message').post(enqueueBotMessage)
+index.route('/bot/message/video').post(enqueueBotMessageVideo)
+// user stats
+index.route('/users/:id/stats').get(getUserStats)
+
 //CMS
 
 // pages

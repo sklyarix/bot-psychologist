@@ -3,6 +3,9 @@ import { env } from '../../config/env.js'
 
 export const getSubscriptionCheck = async (channelUsername, userId) => {
 	try {
+		if (env.TYPE_DEV == 'dev') {
+			return true
+		}
 		if (!userId) {
 			return res.status(500).json({ error: 'internal_error' })
 		}
