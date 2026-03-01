@@ -7,6 +7,7 @@ import { startQueues, stopBoss } from './src/queues/index.js'
 import index from './src/routes/index.js'
 import { aiGoalWorker } from './src/workers/aiGoal.worker.js'
 import { aiQuestionAnswerWorker } from './src/workers/aiQuestionAnswer.worker.js'
+import { checkingUserIsSubBotWorker } from './src/workers/checkingUserIsSubBot.worker.js'
 import {
 	sendMessageVideoWorker,
 	sendMessageWorker
@@ -31,6 +32,7 @@ const init = async () => {
 	await sendMessageWorker()
 	await sendMessageVideoWorker()
 	await aiQuestionAnswerWorker()
+	await checkingUserIsSubBotWorker()
 
 	httpServer = app.listen(env.PORT, () => {
 		console.log(`Сервер запущен на :${env.PORT}`)

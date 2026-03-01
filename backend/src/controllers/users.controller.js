@@ -1,11 +1,21 @@
 import { prisma } from '../lib/prisma.js'
 
-// @desc Получить всех пользователей
+// @desc Получить пользователей за все время
 // @route GET /api/users
+// @route GET /api/users?isSubBot=true
+// @route GET /api/users?isSubBot=false
 // @access Public (можно добавить auth при необходимости)
 export const getAllUsers = async (req, res) => {
 	try {
+		const { isSubBot } = req.query
+
+		const where = {}
+		if (isSubBot !== undefined) {
+			where.isSubBot = isSubBot === 'true'
+		}
+
 		const users = await prisma.user.findMany({
+			where,
 			orderBy: { createdAt: 'desc' },
 			select: {
 				id: true,
@@ -16,7 +26,6 @@ export const getAllUsers = async (req, res) => {
 				photoUrl: true,
 				language: true,
 				isPremium: true,
-				lastActive: true,
 				createdAt: true,
 				updatedAt: true
 			}
@@ -28,3 +37,7 @@ export const getAllUsers = async (req, res) => {
 		return res.status(500).json({ error: 'internal_error' })
 	}
 }
+
+// @desc Получить подписанных пользователей
+// @route GET /api/users
+// @access Public (можно добавить auth при необходимости)

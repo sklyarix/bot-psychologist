@@ -9,7 +9,6 @@ export type User = {
 	photoUrl?: string
 	language: string
 	isPremium: boolean
-	lastActive: string
 	createdAt: string
 	updatedAt: string
 }
@@ -17,6 +16,14 @@ export type User = {
 export const usersApi = {
 	getAll: async () => {
 		const { data } = await instance.get('/users')
+		return data
+	},
+	getAllSubTrue: async () => {
+		const { data } = await instance.get('/users?isSubBot=true')
+		return data
+	},
+	getAllSubFalse: async () => {
+		const { data } = await instance.get('/users?isSubBot=false')
 		return data
 	}
 }

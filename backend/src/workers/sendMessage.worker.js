@@ -20,8 +20,16 @@ export async function sendMessageWorker() {
 			}
 
 			await bot.telegram.sendMessage(telegramId, message, extra)
-		} catch (e) {
-			console.error('[sendMessageWorker] sendMessage error:', e)
+		} catch (error) {
+			// Когда бот пытается написать пользователю и тот заблокировал
+			if (error.response?.statusCode === 403) {
+				await prisma.user.update({
+					where: { telegramId },
+					data: { isSubBot: false }
+				})
+				return
+			}
+			console.error('[sendMessageWorker] sendMessage error:', error)
 		}
 	})
 }

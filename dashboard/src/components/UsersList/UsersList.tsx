@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { useGetAllUsers } from '../../hooks/useUsers'
+import { useGetAllUsersSub } from '../../hooks/useUsers'
 import MessageField from '../BotMessage/MessageField'
 import UserRow from './UserRow'
 import UserStats from './UserStats'
 
 // Список пользователей в стиле чата Telegram
 export default function UsersList() {
-	const { data, isLoading, error } = useGetAllUsers()
+	const { data, isLoading, error } = useGetAllUsersSub()
 	const [selected, setSelected] = useState<string | null>(null)
 
 	if (isLoading)

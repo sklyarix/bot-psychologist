@@ -44,6 +44,7 @@ export const login = async (req, res) => {
 				firstName: user.first_name ?? '',
 				lastName: user.last_name ?? '',
 				photoUrl: user.photo_url ?? '',
+				isSubBot: true,
 				language: user.language_code ?? '',
 				isPremium: user.is_premium
 			},

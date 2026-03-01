@@ -15,7 +15,6 @@ export interface AuthState {
   language: string;
   isPremium: boolean;
   coins: number;
-  lastActive: string;
   createdAt: string;
   updatedAt: string;
 }

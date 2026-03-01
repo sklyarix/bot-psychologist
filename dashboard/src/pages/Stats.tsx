@@ -72,7 +72,7 @@ const StatsPage = () => {
 				Графики: общее количество посещений и количество пользователей
 			</p>
 
-			<div className="mt-6 grid grid-cols-2 gap-6">
+			<div className="mt-6 grid grid-cols-1 gap-6">
 				<div className="p-4 bg-white rounded-lg shadow-sm">
 					<div className="flex items-center justify-between">
 						<div className="flex items-center gap-6">

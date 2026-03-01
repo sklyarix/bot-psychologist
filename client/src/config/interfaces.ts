@@ -11,7 +11,6 @@ export interface IUser {
   photoUrl?: string | null;
   language: string;
   isPremium: boolean;
-  lastActive: string; // ISO Date
   createdAt: string;
   updatedAt: string;
 
