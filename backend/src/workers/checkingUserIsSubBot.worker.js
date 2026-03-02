@@ -25,8 +25,11 @@ export async function checkingUserIsSubBotWorker() {
 						})
 					}
 				} catch (error) {
-					if (error.response?.error_code === 403) {
-						//description: Forbidden: bot was blocked by the user
+					if (
+						error.response?.error_code === 400 ||
+						error.response?.error_code === 403
+					) {
+						//description: description: Bad Request: chat not found
 						await prisma.user.update({
 							where: { telegramId: user.telegramId },
 							data: { isSubBot: false }
