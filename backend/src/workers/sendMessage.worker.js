@@ -1,6 +1,7 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { getBot } from '../bot/index.js'
+import { prisma } from '../lib/prisma.js'
 import {
 	BOT_MESSAGE_QUEUE,
 	BOT_MESSAGE_VIDEO_QUEUE,

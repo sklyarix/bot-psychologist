@@ -1,4 +1,5 @@
 import { getBot } from '../bot/index.js'
+import { prisma } from '../lib/prisma.js'
 import { CHECKING_USER_IS_SUB_BOT, getBoss } from '../queues/index.js'
 
 // Проверяет пользователей не отписались ли от бота
