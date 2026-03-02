@@ -5,7 +5,9 @@ import { CHECKING_USER_IS_SUB_BOT, getBoss } from '../queues/index.js'
 // Проверяет пользователей не отписались ли от бота
 export async function checkingUserIsSubBotWorker() {
 	const boss = await getBoss()
+	console.log('starting worker...')
 	await boss.work(CHECKING_USER_IS_SUB_BOT, async ([job]) => {
+		console.log('working on job:', job.id)
 		try {
 			const bot = getBot()
 
