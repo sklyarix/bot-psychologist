@@ -71,7 +71,6 @@ export default function UserStats({ userId }: Props) {
 							<div className="text-xs text-gray-500">
 								{q.status} — {new Date(q.createdAt).toLocaleString()}
 							</div>
-							{q.answer && <div className="text-sm mt-1">{q.answer}</div>}
 						</div>
 					))}
 				</div>

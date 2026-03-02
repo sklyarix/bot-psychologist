@@ -37,7 +37,3 @@ export const getAllUsers = async (req, res) => {
 		return res.status(500).json({ error: 'internal_error' })
 	}
 }
-
-// @desc Получить подписанных пользователей
-// @route GET /api/users
-// @access Public (можно добавить auth при необходимости)
