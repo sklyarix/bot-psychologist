@@ -10,9 +10,8 @@ import {
 export async function sendMessageWorker() {
 	const boss = await getBoss()
 	await boss.work(BOT_MESSAGE_QUEUE, async ([job]) => {
-		const { telegramId, message, inlineKeyboard } = job.data
-
 		try {
+			const { telegramId, message, inlineKeyboard } = job.data
 			const bot = getBot()
 			const extra = {}
 			if (Array.isArray(inlineKeyboard) && inlineKeyboard.length > 0) {
@@ -23,7 +22,8 @@ export async function sendMessageWorker() {
 		} catch (error) {
 			// Когда бот пытается написать пользователю и тот заблокировал
 			if (error.response?.error_code === 403) {
-				//description: Forbidden: bot was blocked by the user
+				const { telegramId } = job.data
+				//Forbidden: bot was blocked by the user
 				await prisma.user.update({
 					where: { telegramId },
 					data: { isSubBot: false }
@@ -31,6 +31,7 @@ export async function sendMessageWorker() {
 				return
 			}
 			console.error('[sendMessageWorker] sendMessage error:', error)
+			throw error
 		}
 	})
 }
