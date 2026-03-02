@@ -10,12 +10,18 @@ export async function checkingUserIsSubBotWorker() {
 			const bot = getBot()
 
 			const allUsers = await prisma.user.findMany({
-				select: { telegramId: true }
+				select: { telegramId: true, isSubBot: true }
 			})
 
 			for (const user of allUsers) {
 				try {
 					await bot.telegram.sendChatAction(user.telegramId, 'typing')
+					if (!user.isSubBot) {
+						await prisma.user.update({
+							where: { telegramId: user.telegramId },
+							data: { isSubBot: true }
+						})
+					}
 				} catch (error) {
 					if (error.response?.error_code === 403) {
 						//description: Forbidden: bot was blocked by the user
