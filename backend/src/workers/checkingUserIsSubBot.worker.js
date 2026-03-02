@@ -9,12 +9,11 @@ export async function checkingUserIsSubBotWorker() {
 		try {
 			const bot = getBot()
 
-			const subUsers = await prisma.user.findMany({
-				where: { isSubBot: true },
+			const allUsers = await prisma.user.findMany({
 				select: { telegramId: true }
 			})
 
-			for (const user of subUsers) {
+			for (const user of allUsers) {
 				try {
 					await bot.telegram.sendChatAction(user.telegramId, 'typing')
 				} catch (error) {
