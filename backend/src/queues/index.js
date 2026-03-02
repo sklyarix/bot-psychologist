@@ -33,6 +33,5 @@ export async function startQueues() {
 		b.createQueue(AI_GOAL_QUEUE),
 		b.createQueue(CHECKING_USER_IS_SUB_BOT)
 	])
-	// Запускать каждый день в 03:00
-	await b.schedule(CHECKING_USER_IS_SUB_BOT, '0 3 * * 7')
+	await b.schedule(CHECKING_USER_IS_SUB_BOT, '0 3 * * *') // Каждый день в 03:00
 }
