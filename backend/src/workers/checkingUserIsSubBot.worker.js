@@ -17,7 +17,8 @@ export async function checkingUserIsSubBotWorker() {
 				try {
 					await bot.telegram.sendChatAction(user.telegramId, 'typing')
 				} catch (error) {
-					if (error.response?.statusCode === 403) {
+					if (error.response?.error_code === 403) {
+						//description: Forbidden: bot was blocked by the user
 						await prisma.user.update({
 							where: { telegramId: user.telegramId },
 							data: { isSubBot: false }

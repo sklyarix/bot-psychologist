@@ -22,7 +22,8 @@ export async function sendMessageWorker() {
 			await bot.telegram.sendMessage(telegramId, message, extra)
 		} catch (error) {
 			// Когда бот пытается написать пользователю и тот заблокировал
-			if (error.response?.statusCode === 403) {
+			if (error.response?.error_code === 403) {
+				//description: Forbidden: bot was blocked by the user
 				await prisma.user.update({
 					where: { telegramId },
 					data: { isSubBot: false }
