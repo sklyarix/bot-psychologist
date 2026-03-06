@@ -1,3 +1,4 @@
+import { prisma } from '../../lib/prisma.js'
 import {
 	BOT_MESSAGE_QUEUE,
 	BOT_MESSAGE_VIDEO_QUEUE,
@@ -16,8 +17,29 @@ export const enqueueBotMessage = async (req, res) => {
 		}
 
 		const boss = await getBoss()
-		// Добавляем задачу в очередь для воркера sendMessageWorker
-		await boss.send(BOT_MESSAGE_QUEUE, { telegramId, message, inlineKeyboard })
+		// telegramId can be single string id or special value 'all_active'
+		if (telegramId === 'all_active') {
+			// get active users
+			const activeUsers = await prisma.user.findMany({
+				where: { isSubBot: true },
+				select: { telegramId: true }
+			})
+
+			for (const u of activeUsers) {
+				if (!u.telegramId) continue
+				await boss.send(BOT_MESSAGE_QUEUE, {
+					telegramId: u.telegramId,
+					message,
+					inlineKeyboard
+				})
+			}
+		} else {
+			await boss.send(BOT_MESSAGE_QUEUE, {
+				telegramId,
+				message,
+				inlineKeyboard
+			})
+		}
 
 		return res.json({ success: true })
 	} catch (error) {

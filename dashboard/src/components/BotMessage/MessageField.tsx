@@ -4,7 +4,7 @@ import { botApi } from '../../api/bot'
 import InlineButtonEditor from './InlineButtonEditor'
 
 type Props = {
-	telegramId?: string
+	telegramId?: string // single telegramId or special value 'all_active'
 	onSent?: () => void
 }
 

@@ -8,6 +8,7 @@ import UserStats from './UserStats'
 export default function UsersList() {
 	const { data, isLoading, error } = useGetAllUsersSub()
 	const [selected, setSelected] = useState<string | null>(null)
+	const [broadcastOpen, setBroadcastOpen] = useState(false)
 
 	if (isLoading)
 		return <div className="text-gray-500">Загрузка пользователей...</div>
@@ -19,8 +20,33 @@ export default function UsersList() {
 	return (
 		<div className="mt-4 bg-white rounded-lg shadow-sm overflow-hidden">
 			<div className="px-4 py-2 border-b">
-				<div className="text-sm font-semibold">Пользователи</div>
+				<div className="flex items-center justify-between">
+					<div className="text-sm font-semibold">Пользователи</div>
+					<button
+						className="text-sm text-blue-600 hover:underline"
+						onClick={() => setBroadcastOpen(true)}
+						type="button">
+						Написать всем
+					</button>
+				</div>
 			</div>
+
+			{broadcastOpen && (
+				<div className="p-3 border-b bg-gray-50">
+					<div className="flex justify-end mb-2">
+						<button
+							className="text-sm text-gray-500"
+							onClick={() => setBroadcastOpen(false)}
+							type="button">
+							Закрыть
+						</button>
+					</div>
+					<MessageField
+						telegramId={'all_active'}
+						onSent={() => setBroadcastOpen(false)}
+					/>
+				</div>
+			)}
 
 			<div className="divide-y">
 				{users.length === 0 ? (
@@ -48,7 +74,7 @@ export default function UsersList() {
 									</div>
 									<UserStats userId={u.id} />
 									<MessageField
-										telegramId={u.telegramId}
+										telegramId={u.telegramId || ''}
 										onSent={() => setSelected(null)}
 									/>
 								</div>
