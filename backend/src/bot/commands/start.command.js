@@ -1,10 +1,9 @@
 import { Markup } from 'telegraf'
-import { env } from '../../../config/env.js'
 import { prisma } from '../../lib/prisma.js'
 
 export async function startCommand(ctx) {
 	// ID канала для проверки подписки
-	const channelUsername = env.CHANNEL_USERNAME
+	//const channelUsername = env.CHANNEL_USERNAME
 
 	// Проверяем, является ли пользователь подписчиком канала
 

@@ -1,7 +1,6 @@
 import { isValid, parse } from '@telegram-apps/init-data-node'
 import { env } from '../../config/env.js'
 import { generateToken } from '../helpers/generateToken.js'
-import { getSubscriptionCheck } from '../helpers/getSubscriptionCheck.js'
 import { prisma } from '../lib/prisma.js'
 
 // @desc Обновить и создать пользователя
@@ -31,7 +30,8 @@ export const login = async (req, res) => {
 			return res.status(400).send({ error: 'AUTH__INVALID_INITDATA' })
 		}
 
-		const isSub = await getSubscriptionCheck(env.CHANNEL_USERNAME, user.id)
+		// Временно убираем (блокировки)
+		//const isSub = await getSubscriptionCheck(env.CHANNEL_USERNAME, user.id)
 
 		const currentDate = new Date()
 		const userData = await prisma.user.upsert({
