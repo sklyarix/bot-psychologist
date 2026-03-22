@@ -203,45 +203,6 @@ const EditBot = () => {
 							/>
 						</div>
 
-						{/* Для start команды - текст для неподписанных */}
-						{command.command === 'start' && (
-							<>
-								<div className="mb-4">
-									<label className="block text-sm font-medium mb-1">
-										Текст для неподписанных
-									</label>
-									<textarea
-										value={command.content.notSubscribedText || ''}
-										onChange={e =>
-											handleContentChange(
-												command.id,
-												'notSubscribedText',
-												e.target.value
-											)
-										}
-										placeholder="Текст для пользователей, не подписанных на канал..."
-										className="w-full resize-none px-3 py-2 rounded border text-sm h-24 focus:outline-none focus:ring"
-									/>
-								</div>
-
-								<div className="mb-4">
-									<label className="block text-sm font-medium mb-1">
-										Кнопки для неподписанных
-									</label>
-									<BotButtonEditor
-										value={command.content.notSubscribedKeyboard || []}
-										onChange={value =>
-											handleContentChange(
-												command.id,
-												'notSubscribedKeyboard',
-												value
-											)
-										}
-									/>
-								</div>
-							</>
-						)}
-
 						{/* Кнопка сохранить */}
 						{changes[command.id] && (
 							<button
