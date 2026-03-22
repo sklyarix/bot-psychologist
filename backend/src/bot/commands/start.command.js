@@ -1,6 +1,7 @@
 import { Markup } from 'telegraf'
 import { env } from '../../../config/env.js'
 import { getSubscriptionCheck } from '../../helpers/getSubscriptionCheck.js'
+import { prisma } from '../../lib/prisma.js'
 
 export async function startCommand(ctx) {
 	// ID канала для проверки подписки
@@ -24,7 +25,16 @@ export async function startCommand(ctx) {
 		return
 	}
 
-	const { textHTML, keyboard: keyboardData } = content
+	const commandData = await prisma.botCommand.findUnique({
+		where: { command: 'start' }
+	})
+
+	if (!commandData) {
+		await ctx.reply('Команда start не найдена в базе данных.')
+		return
+	}
+
+	const { textHTML, keyboard: keyboardData } = commandData.content
 
 	let keyboard
 	if (keyboardData && keyboardData.length > 0) {
