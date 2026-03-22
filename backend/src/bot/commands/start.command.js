@@ -1,6 +1,5 @@
 import { Markup } from 'telegraf'
 import { env } from '../../../config/env.js'
-import { getSubscriptionCheck } from '../../helpers/getSubscriptionCheck.js'
 import { prisma } from '../../lib/prisma.js'
 
 export async function startCommand(ctx) {
@@ -8,6 +7,10 @@ export async function startCommand(ctx) {
 	const channelUsername = env.CHANNEL_USERNAME
 
 	// Проверяем, является ли пользователь подписчиком канала
+
+	// Временно убираем (блокировки)
+
+	/*
 	const isSub = await getSubscriptionCheck(env.CHANNEL_USERNAME, ctx.from.id)
 
 	if (!isSub) {
@@ -24,6 +27,7 @@ export async function startCommand(ctx) {
 		await ctx.replyWithHTML(textIsCheckSub, keyboard)
 		return
 	}
+	*/
 
 	const commandData = await prisma.botCommand.findUnique({
 		where: { command: 'start' }
