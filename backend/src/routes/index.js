@@ -6,6 +6,13 @@ import {
 	getIdAiGoal
 } from '../controllers/aiGoal.controller.js'
 import {
+	createAiGoalMessage,
+	deleteAiGoalMessage,
+	getAiGoalMessageById,
+	getAllAiGoalMessages,
+	updateAiGoalMessage
+} from '../controllers/aiGoalMessages.controller.js'
+import {
 	createAiQA,
 	getAllAiQA,
 	getIdAiQA
@@ -14,6 +21,13 @@ import {
 	enqueueBotMessage,
 	enqueueBotMessageVideo
 } from '../controllers/bot/messages.controller.js'
+import {
+	createBotCommand,
+	deleteBotCommand,
+	getAllBotCommands,
+	getBotCommandById,
+	updateBotCommand
+} from '../controllers/botCommands.controller.js'
 import {
 	createPageFieldGroup,
 	deletePageFieldGroup,
@@ -91,5 +105,19 @@ index.route('/ai/goals/:id').get(auth, getIdAiGoal)
 index.route('/ai/qa').post(auth, createAiQA)
 index.route('/ai/qa').get(auth, getAllAiQA)
 index.route('/ai/qa/:id').get(auth, getIdAiQA)
+
+// Bot Commands
+index.route('/bot-commands').post(createBotCommand)
+index.route('/bot-commands').get(getAllBotCommands)
+index.route('/bot-commands/:id').get(getBotCommandById)
+index.route('/bot-commands/:id').put(updateBotCommand)
+index.route('/bot-commands/:id').delete(deleteBotCommand)
+
+// AI Goal Messages
+index.route('/ai-goal-messages').post(createAiGoalMessage)
+index.route('/ai-goal-messages').get(getAllAiGoalMessages)
+index.route('/ai-goal-messages/:id').get(getAiGoalMessageById)
+index.route('/ai-goal-messages/:id').put(updateAiGoalMessage)
+index.route('/ai-goal-messages/:id').delete(deleteAiGoalMessage)
 
 export default index

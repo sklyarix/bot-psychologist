@@ -1,4 +1,5 @@
 import { listMessageNotifyAiGoal } from '../config/listMessageNotifyAiGoal.js'
+import { prisma } from '../lib/prisma.js'
 import { splitPlanByDays } from '../helpers/splitPlanByDays.js'
 import { AI_GOAL_QUEUE, BOT_MESSAGE_QUEUE, getBoss } from '../queues/index.js'
 import { AIService } from '../services/ai.service.js'
@@ -38,7 +39,10 @@ export async function aiGoalWorker() {
 			// Формируем уведомления
 			for (let day = 1; day <= diffDays; day++) {
 				// Сообщение
-				const message = listMessageNotifyAiGoal[day]
+				const messageData = await prisma.aiGoalMessage.findUnique({
+					where: { day }
+				})
+				const message = messageData?.message || `День ${day}\nСообщение не найдено.`
 				// Получаем текущее время в миллисекундах
 				const nowTime = Date.now()
 				const at9Time = new Date(nowTime).setHours(9, 0, 0, 0)

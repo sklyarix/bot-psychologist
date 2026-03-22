@@ -10,17 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StatsRouteImport } from './routes/stats'
-import { Route as EditRouteImport } from './routes/edit'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EditIndexRouteImport } from './routes/edit/index'
+import { Route as EditPageRouteImport } from './routes/edit/page'
+import { Route as EditBotRouteImport } from './routes/edit/bot'
+import { Route as EditAiGoalMessagesRouteImport } from './routes/edit/ai-goal-messages'
 
 const StatsRoute = StatsRouteImport.update({
   id: '/stats',
   path: '/stats',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EditRoute = EditRouteImport.update({
-  id: '/edit',
-  path: '/edit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -28,35 +26,86 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EditIndexRoute = EditIndexRouteImport.update({
+  id: '/edit/',
+  path: '/edit/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditPageRoute = EditPageRouteImport.update({
+  id: '/edit/page',
+  path: '/edit/page',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditBotRoute = EditBotRouteImport.update({
+  id: '/edit/bot',
+  path: '/edit/bot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditAiGoalMessagesRoute = EditAiGoalMessagesRouteImport.update({
+  id: '/edit/ai-goal-messages',
+  path: '/edit/ai-goal-messages',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/edit': typeof EditRoute
   '/stats': typeof StatsRoute
+  '/edit/ai-goal-messages': typeof EditAiGoalMessagesRoute
+  '/edit/bot': typeof EditBotRoute
+  '/edit/page': typeof EditPageRoute
+  '/edit': typeof EditIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/edit': typeof EditRoute
   '/stats': typeof StatsRoute
+  '/edit/ai-goal-messages': typeof EditAiGoalMessagesRoute
+  '/edit/bot': typeof EditBotRoute
+  '/edit/page': typeof EditPageRoute
+  '/edit': typeof EditIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/edit': typeof EditRoute
   '/stats': typeof StatsRoute
+  '/edit/ai-goal-messages': typeof EditAiGoalMessagesRoute
+  '/edit/bot': typeof EditBotRoute
+  '/edit/page': typeof EditPageRoute
+  '/edit/': typeof EditIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/edit' | '/stats'
+  fullPaths:
+    | '/'
+    | '/stats'
+    | '/edit/ai-goal-messages'
+    | '/edit/bot'
+    | '/edit/page'
+    | '/edit'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/edit' | '/stats'
-  id: '__root__' | '/' | '/edit' | '/stats'
+  to:
+    | '/'
+    | '/stats'
+    | '/edit/ai-goal-messages'
+    | '/edit/bot'
+    | '/edit/page'
+    | '/edit'
+  id:
+    | '__root__'
+    | '/'
+    | '/stats'
+    | '/edit/ai-goal-messages'
+    | '/edit/bot'
+    | '/edit/page'
+    | '/edit/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  EditRoute: typeof EditRoute
   StatsRoute: typeof StatsRoute
+  EditAiGoalMessagesRoute: typeof EditAiGoalMessagesRoute
+  EditBotRoute: typeof EditBotRoute
+  EditPageRoute: typeof EditPageRoute
+  EditIndexRoute: typeof EditIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,13 +117,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StatsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/edit': {
-      id: '/edit'
-      path: '/edit'
-      fullPath: '/edit'
-      preLoaderRoute: typeof EditRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -82,13 +124,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/edit/': {
+      id: '/edit/'
+      path: '/edit'
+      fullPath: '/edit'
+      preLoaderRoute: typeof EditIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/edit/page': {
+      id: '/edit/page'
+      path: '/edit/page'
+      fullPath: '/edit/page'
+      preLoaderRoute: typeof EditPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/edit/bot': {
+      id: '/edit/bot'
+      path: '/edit/bot'
+      fullPath: '/edit/bot'
+      preLoaderRoute: typeof EditBotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/edit/ai-goal-messages': {
+      id: '/edit/ai-goal-messages'
+      path: '/edit/ai-goal-messages'
+      fullPath: '/edit/ai-goal-messages'
+      preLoaderRoute: typeof EditAiGoalMessagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  EditRoute: EditRoute,
   StatsRoute: StatsRoute,
+  EditAiGoalMessagesRoute: EditAiGoalMessagesRoute,
+  EditBotRoute: EditBotRoute,
+  EditPageRoute: EditPageRoute,
+  EditIndexRoute: EditIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -140,3 +140,25 @@ model PageField {
   @@index([pageGroupId])
   @@map("page_fields")
 }
+
+/// Bot commands content storage
+model BotCommand {
+  id        String   @id @default(uuid())
+  command   String   @unique
+  content   Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("bot_commands")
+}
+
+/// AI Goal notification messages
+model AiGoalMessage {
+  id        String   @id @default(uuid())
+  day       Int      @unique
+  message   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ai_goal_messages")
+}

@@ -8,20 +8,17 @@ export const Route = createRootRoute({
 				<nav className="flex flex-col gap-2">
 					<Link
 						to="/"
-						className="px-3 py-2 rounded hover:bg-gray-100"
-					>
+						className="px-3 py-2 rounded hover:bg-gray-100">
 						Главная
 					</Link>
 					<Link
 						to="/stats"
-						className="px-3 py-2 rounded hover:bg-gray-100"
-					>
+						className="px-3 py-2 rounded hover:bg-gray-100">
 						Статистика
 					</Link>
 					<Link
 						to="/edit"
-						className="px-3 py-2 rounded hover:bg-gray-100"
-					>
+						className="px-3 py-2 rounded hover:bg-gray-100">
 						Редактировать
 					</Link>
 				</nav>

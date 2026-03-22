@@ -24,19 +24,28 @@ export async function startCommand(ctx) {
 		return
 	}
 
-	const keyboard = Markup.inlineKeyboard([
-		[
-			Markup.button.webApp('Войти в кабинет', env.HOST),
+	const { textHTML, keyboard: keyboardData } = content
 
-			//Markup.button.url('Войти в кабинет url', 'https://t.me/devpsychologist_bot?startapp'),
-			Markup.button.url(
-				'Записаться на консультацию',
-				'https://ivannasapcho2.tilda.ws/'
+	let keyboard
+	if (keyboardData && keyboardData.length > 0) {
+		keyboard = Markup.inlineKeyboard(
+			keyboardData.map(row =>
+				row
+					.map(btn => {
+						if (btn.type === 'webApp') {
+							return Markup.button.webApp(btn.text, btn.url)
+						} else if (btn.type === 'url') {
+							return Markup.button.url(btn.text, btn.url)
+						}
+						return null
+					})
+					.filter(Boolean)
 			)
-		]
-	])
+		)
+	}
 
-	const helloText = `Привет, этот бот — твой психологический помощник, созданный на основе подхода психолога Иванны Сапожниковой.\n\nЕго задача — помогать тебе двигаться к целям осознанно, сохраняя внутреннюю опору, смысл и ощущение свободы в любое время суток.\n\nВ основе — знания современной психологии, экзистенциализма, исследований в области мотивации, устойчивости и саморегуляции.\n\nЗдесь нет готовых советов, но бот поможет увидеть глубже: что для тебя важно, что ограничивает, а что — поддерживает, и какой шаг будет следующим.\n\nПеред использованием ознакомься с Правилами и Возможностями. \n\n<b>/help</b> - Правила\n<b>/info</b> - Возможности`
-
-	await ctx.replyWithHTML(helloText, keyboard)
+	await ctx.replyWithHTML(
+		textHTML,
+		keyboard ? { reply_markup: keyboard.reply_markup } : {}
+	)
 }

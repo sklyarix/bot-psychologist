@@ -1,15 +1,40 @@
 import { Markup } from 'telegraf'
-import { env } from '../../../config/env.js'
+import { prisma } from '../../lib/prisma.js'
 
 export async function helpCommand(ctx) {
-	const keyboard = Markup.inlineKeyboard([
-		[
-			Markup.button.callback('Возможности', 'info'),
-			Markup.button.webApp('Войти в кабинет', env.HOST)
-		]
-	])
+	const commandData = await prisma.botCommand.findUnique({
+		where: { command: 'help' }
+	})
 
-	const textHTML = `<b>1. Это не консультация психолога.</b>\nБот поможет размышлять, прояснять цели, находить направление, но от не заменит индивидуальную терапию или работу со специалистом при сложных состояниях.\n\n<b>2. Ты — автор своего выбора.</b>\nЗдесь нет готовых решений. Задача бота — помочь тебе находить направление, которое подходит тебе.\n\n<b>3. Безопасность и этика.</b>\nЕсли твой запрос содержит угрозу себе или другим, или выходит за границы этики психолога, я мягко остановлю процесс и предложу безопасный способ продолжить путь.\n\n<b>4. Размышляй и делай в своём темпе.</b>\nБот — это пространство роста. Здесь важно не количество шагов, а их качество и честность с собой.`
+	if (!commandData) {
+		await ctx.reply('Команда help не найдена в базе данных.')
+		return
+	}
 
-	await ctx.replyWithHTML(textHTML, keyboard)
+	const { textHTML, keyboard: keyboardData } = commandData.content
+
+	let keyboard
+	if (keyboardData && keyboardData.length > 0) {
+		keyboard = Markup.inlineKeyboard(
+			keyboardData.map(row =>
+				row
+					.map(btn => {
+						if (btn.type === 'callback') {
+							return Markup.button.callback(btn.text, btn.data)
+						} else if (btn.type === 'webApp') {
+							return Markup.button.webApp(btn.text, btn.url)
+						} else if (btn.type === 'url') {
+							return Markup.button.url(btn.text, btn.url)
+						}
+						return null
+					})
+					.filter(Boolean)
+			)
+		)
+	}
+
+	await ctx.replyWithHTML(
+		textHTML,
+		keyboard ? { reply_markup: keyboard.reply_markup } : {}
+	)
 }
