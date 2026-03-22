@@ -32,6 +32,7 @@ export const login = async (req, res) => {
 
 		// Временно убираем (блокировки)
 		//const isSub = await getSubscriptionCheck(env.CHANNEL_USERNAME, user.id)
+		const isSub = true
 
 		const currentDate = new Date()
 		const userData = await prisma.user.upsert({
