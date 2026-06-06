@@ -22,6 +22,18 @@ export async function aiQuestionAnswerWorker() {
 				text: question
 			})
 
+			if (!resultAi) {
+				console.error(
+					'aiQuestionAnswerWorker: AI service returned null or empty result',
+					{ qaId, question }
+				)
+				await prisma.aiQuestionAnswer.update({
+					where: { id: qaId },
+					data: { status: 'failed' }
+				})
+				return
+			}
+
 			await prisma.aiQuestionAnswer.update({
 				where: { id: qaId },
 				data: {

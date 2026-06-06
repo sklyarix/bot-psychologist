@@ -17,7 +17,12 @@ export const env = {
 		process.env.TYPE_DEV == 'dev'
 			? process.env.TG_BOT_TOKEN_DEV
 			: process.env.TG_BOT_TOKEN_PROD,
-	TIMEWEB_TOKEN: process.env.TIMEWEB_TOKEN
+	TIMEWEB_TOKEN: process.env.TIMEWEB_TOKEN,
+	SMTP_HOST: process.env.SMTP_HOST,
+	SMTP_PORT: process.env.SMTP_PORT,
+	SMTP_USER: process.env.SMTP_USER,
+	SMTP_PASS: process.env.SMTP_PASS,
+	SMTP_FROM: process.env.SMTP_FROM
 }
 
 if (!env.OPENAI_API_KEY) {

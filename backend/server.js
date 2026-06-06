@@ -2,7 +2,6 @@ import express from 'express'
 
 import cors from 'cors'
 import { env } from './config/env.js'
-import { initBot } from './src/bot/index.js'
 import { startQueues, stopBoss } from './src/queues/index.js'
 import index from './src/routes/index.js'
 import { aiGoalWorker } from './src/workers/aiGoal.worker.js'
@@ -14,7 +13,7 @@ import {
 } from './src/workers/sendMessage.worker.js'
 
 const app = express()
-let bot
+//let bot
 let httpServer
 
 const init = async () => {
@@ -22,7 +21,7 @@ const init = async () => {
 	app.use(express.json())
 	app.use('/api', index)
 
-	bot = initBot()
+	//bot = initBot()
 
 	// очереди
 	await startQueues()

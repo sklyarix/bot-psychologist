@@ -7,28 +7,15 @@ import { prisma } from '../lib/prisma.js'
 // @access Public (можно добавить auth при необходимости)
 export const getAllUsers = async (req, res) => {
 	try {
-		const { isSubBot } = req.query
+		//const { isSubBot } = req.query
 
-		const where = {}
-		if (isSubBot !== undefined) {
-			where.isSubBot = isSubBot === 'true'
-		}
+		//const where = {}
+		//if (isSubBot !== undefined) {
+		//	where.isSubBot = isSubBot === 'true'
+		//}
 
 		const users = await prisma.user.findMany({
-			where,
-			orderBy: { createdAt: 'desc' },
-			select: {
-				id: true,
-				telegramId: true,
-				username: true,
-				firstName: true,
-				lastName: true,
-				photoUrl: true,
-				language: true,
-				isPremium: true,
-				createdAt: true,
-				updatedAt: true
-			}
+			orderBy: { createdAt: 'desc' }
 		})
 
 		return res.json({ success: true, users })

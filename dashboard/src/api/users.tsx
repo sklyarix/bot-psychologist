@@ -2,13 +2,8 @@ import { instance } from '../helpers/instance.tsx'
 
 export type User = {
 	id: string
-	telegramId: string
-	username?: string
-	firstName: string
-	lastName?: string
-	photoUrl?: string
-	language: string
-	isPremium: boolean
+	email: string
+	password: string
 	createdAt: string
 	updatedAt: string
 }

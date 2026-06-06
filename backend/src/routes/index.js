@@ -28,6 +28,7 @@ import {
 	getBotCommandById,
 	updateBotCommand
 } from '../controllers/botCommands.controller.js'
+import { userCheck } from '../controllers/checkMail.controller.js'
 import {
 	createPageFieldGroup,
 	deletePageFieldGroup,
@@ -50,6 +51,7 @@ import {
 	updatePage
 } from '../controllers/cms/pages.controller.js'
 import { login } from '../controllers/login.controller.js'
+import { register } from '../controllers/register.controller.js'
 import {
 	createVisit,
 	getAllVisits
@@ -61,7 +63,10 @@ import { auth } from '../middlewares/auth.middleware.js'
 // TODO: auth для админки
 const index = Router()
 
-index.route('/login').post(login)
+//Auth
+index.route('/auth/login').post(login)
+index.route('/auth/register').post(register)
+index.route('/auth/check-email').post(userCheck)
 
 //users
 index.route('/users').get(getAllUsers)

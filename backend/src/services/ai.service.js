@@ -34,9 +34,17 @@ export class AIService {
 				return typeof content === 'string'
 					? content.trim()
 					: String(content ?? '')
+			} else {
+				const errorData = await result.text()
+				console.error(
+					`Error sendTimewebGPT: status=${result.status}, presetKey=${presetKey}`,
+					errorData
+				)
+				return null
 			}
 		} catch (error) {
-			console.error('error sendTimewebGPT = ', error)
+			console.error('Exception sendTimewebGPT = ', error)
+			return null
 		}
 	}
 }

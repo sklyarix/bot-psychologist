@@ -74,7 +74,7 @@ export default function UsersList() {
 									</div>
 									<UserStats userId={u.id} />
 									<MessageField
-										telegramId={u.telegramId || ''}
+										telegramId={u.id}
 										onSent={() => setSelected(null)}
 									/>
 								</div>

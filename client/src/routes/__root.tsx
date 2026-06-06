@@ -1,20 +1,27 @@
-import { createRootRoute, Outlet } from '@tanstack/react-router';
+import { createRootRoute, Outlet, useNavigate } from '@tanstack/react-router';
+import { useEffect } from 'react';
+import { useAuth } from '../hooks/useAuth';
 
 import Layout from '../components/Layout/Layout.tsx';
-import Loader from '../components/Loader/Loader.tsx';
-import { useFirstLaunchRedirect } from '../hooks/useFirstLaunchRedirect.ts';
-import { useLogin } from '../hooks/useLogin.ts';
-import { useTg, useTgBackButton } from '../hooks/useTg.ts';
 
 const RootLayout = () => {
-  const chanelUser = import.meta.env.VITE_CHANNEL_USERNAME;
+  const navigate = useNavigate();
+  const { isAuth } = useAuth();
 
-  const { isTg, webApp } = useTg();
-  useFirstLaunchRedirect();
-  useTgBackButton();
-  const { data: dataAuth, isLoading: isLoadingAuth, error: errorAuth } = useLogin(webApp);
+  // Редирект если уже авторизирован
+  useEffect(() => {
+    if (!isAuth) {
+      navigate({ to: '/login' });
+    }
+  }, [isAuth, navigate]);
+  //const chanelUser = import.meta.env.VITE_CHANNEL_USERNAME;
+
+  //const { isTg, webApp } = useTg();
+  //useFirstLaunchRedirect();
+  //useTgBackButton();
 
   // Проверка на запуск в Telegram
+  /*
   if (!isTg) {
     return (
       <div>
@@ -23,12 +30,13 @@ const RootLayout = () => {
       </div>
     );
   }
+  */
 
   //  Loading
-  if (isLoadingAuth) return <Loader />;
+  //if (isLoadingAuth) return <Loader />;
 
   // Проверка подписок
-
+  /*
   if (!dataAuth || !dataAuth.isSub) {
     return (
       <div>
@@ -52,7 +60,7 @@ const RootLayout = () => {
       </div>
     );
   }
-
+  
   if (errorAuth)
     return (
       <div>
@@ -62,7 +70,7 @@ const RootLayout = () => {
         </div>
       </div>
     );
-
+  */
   return (
     <Layout>
       <Outlet />

@@ -2,7 +2,6 @@ import { createFileRoute } from '@tanstack/react-router';
 import { getFieldHtml, pagesId } from '../../cms/data.ts';
 import FeatureCard from '../components/FeatureCard/FeatureCard.tsx';
 import { useGetPageById } from '../hooks/cms/pages/usePages.ts';
-import { useVisit } from '../hooks/stats/useVisit.ts';
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -13,7 +12,7 @@ function Index() {
   const { home } = pagesId;
   const { data: homePage } = useGetPageById(home);
 
-  useVisit();
+  //useVisit();
   if (!homePage) return null;
 
   return (

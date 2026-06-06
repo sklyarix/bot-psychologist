@@ -1,7 +1,5 @@
-import { listMessageNotifyAiGoal } from '../config/listMessageNotifyAiGoal.js'
-import { prisma } from '../lib/prisma.js'
 import { splitPlanByDays } from '../helpers/splitPlanByDays.js'
-import { AI_GOAL_QUEUE, BOT_MESSAGE_QUEUE, getBoss } from '../queues/index.js'
+import { AI_GOAL_QUEUE, getBoss } from '../queues/index.js'
 import { AIService } from '../services/ai.service.js'
 import { updateAiGoalStatus } from '../services/updateAiGoalStatus.service.js'
 
@@ -20,11 +18,16 @@ export async function aiGoalWorker() {
 			})
 			// TODO: Исправить логику ошибок
 			if (!resultAi) {
+				console.error(
+					'aiGoalWorker: AI service returned null or empty result',
+					{ goalId, title }
+				)
 				updateAiGoalStatus(
 					goalId,
 					'Технические неполадки. Скоро исправим.',
 					'failed'
 				)
+				return
 			}
 			// Разбили на дни ответ ИИ
 			const objectDays = splitPlanByDays(resultAi)
@@ -37,6 +40,7 @@ export async function aiGoalWorker() {
 				)
 			}
 			// Формируем уведомления
+			/*
 			for (let day = 1; day <= diffDays; day++) {
 				// Сообщение
 				const messageData = await prisma.aiGoalMessage.findUnique({
@@ -53,6 +57,7 @@ export async function aiGoalWorker() {
 						: new Date(at9Time + (day - 1) * 24 * 60 * 60 * 1000)
 
 				// Кнопки
+				
 				let inlineKeyboard = []
 				if (day === 3) {
 					inlineKeyboard = [
@@ -77,7 +82,9 @@ export async function aiGoalWorker() {
 						]
 					]
 				}
+					
 				// В очередь
+				
 				await boss.send(
 					BOT_MESSAGE_QUEUE,
 					{ telegramId, message, inlineKeyboard },
@@ -87,7 +94,7 @@ export async function aiGoalWorker() {
 						retryDelay: 60
 					}
 				)
-			}
+			}*/
 			updateAiGoalStatus(goalId, objectDays, 'completed')
 		} catch (e) {
 			console.error('aiGoalWorker error:', e)

@@ -1,15 +1,14 @@
 import { useMemo, useState } from 'react'
 import { FiSend } from 'react-icons/fi'
 import { botApi } from '../../api/bot'
-import InlineButtonEditor from './InlineButtonEditor'
 
 type Props = {
-	telegramId?: string // single telegramId or special value 'all_active'
+	userId?: string // single userId or special value 'all_active'
 	onSent?: () => void
 }
 
-// Поле ввода сообщения со стилем, похожим на Telegram
-export default function MessageField({ telegramId = '', onSent }: Props) {
+// Поле ввода сообщения для отправки по почте
+export default function MessageField({ userId = '', onSent }: Props) {
 	const [message, setMessage] = useState('')
 	const [buttons, setButtons] = useState<Array<{ text: string; url: string }>>(
 		[]
@@ -35,7 +34,7 @@ export default function MessageField({ telegramId = '', onSent }: Props) {
 				: undefined
 
 			await botApi.sendMessage({
-				telegramId,
+				userId,
 				message: message.trim(),
 				inlineKeyboard
 			})
@@ -69,11 +68,6 @@ export default function MessageField({ telegramId = '', onSent }: Props) {
 					</button>
 				</div>
 			</div>
-
-			<InlineButtonEditor
-				value={buttons}
-				onChange={setButtons}
-			/>
 		</div>
 	)
 }

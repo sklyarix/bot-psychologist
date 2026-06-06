@@ -1,5 +1,4 @@
 import { Link } from '@tanstack/react-router';
-import { useTg } from '../../hooks/useTg.ts';
 
 interface IFeatureCard {
   name: string;
@@ -12,7 +11,7 @@ interface IFeatureCard {
 
 const FeatureCard = (props: IFeatureCard) => {
   const { name, title, description_1, description_2, description_3, buttonText } = props;
-  const { webApp } = useTg();
+  //const { webApp } = useTg();
 
   return (
     <div className="rounded-[15px] border border-white p-5 shadow-[1px_4px_4px_0_rgba(0,0,0,0.25)]">

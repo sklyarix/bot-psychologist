@@ -1,43 +1,46 @@
 import { prisma } from '../../lib/prisma.js'
-import {
-	BOT_MESSAGE_QUEUE,
-	BOT_MESSAGE_VIDEO_QUEUE,
-	getBoss
-} from '../../queues/index.js'
+import { EmailService } from '../../services/email.service.js'
 
-// @desc Добавить задачу отправки текстового сообщения в очередь
+// @desc Отправить сообщение по почте пользователю
 // @route POST /api/bot/message
 // @access Public (add `auth` middleware if needed)
 export const enqueueBotMessage = async (req, res) => {
 	try {
-		const { telegramId, message, inlineKeyboard } = req.body
+		const { userId, message, inlineKeyboard } = req.body
 
-		if (!telegramId || !message) {
-			return res.status(400).json({ error: 'telegramId and message required' })
+		if (!userId || !message) {
+			return res.status(400).json({ error: 'userId and message required' })
 		}
 
-		const boss = await getBoss()
-		// telegramId can be single string id or special value 'all_active'
-		if (telegramId === 'all_active') {
-			// get active users
-			const activeUsers = await prisma.user.findMany({
-				where: { isSubBot: true },
-				select: { telegramId: true }
+		// Если userId === 'all_active', отправляем всем пользователям
+		if (userId === 'all_active') {
+			const allUsers = await prisma.user.findMany({
+				select: { id: true, email: true }
 			})
 
-			for (const u of activeUsers) {
-				if (!u.telegramId) continue
-				await boss.send(BOT_MESSAGE_QUEUE, {
-					telegramId: u.telegramId,
+			for (const user of allUsers) {
+				if (!user.email) continue
+				await EmailService.sendMessageToUser({
+					email: user.email,
 					message,
-					inlineKeyboard
+					inlineButtons: inlineKeyboard
 				})
 			}
 		} else {
-			await boss.send(BOT_MESSAGE_QUEUE, {
-				telegramId,
+			// Получить пользователя по ID и отправить сообщение
+			const user = await prisma.user.findUnique({
+				where: { id: userId },
+				select: { email: true }
+			})
+
+			if (!user || !user.email) {
+				return res.status(404).json({ error: 'user_not_found_or_no_email' })
+			}
+
+			await EmailService.sendMessageToUser({
+				email: user.email,
 				message,
-				inlineKeyboard
+				inlineButtons: inlineKeyboard
 			})
 		}
 

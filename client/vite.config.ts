@@ -12,7 +12,8 @@ export default defineConfig({
     tailwindcss(),
     react(),
   ],
-  build:{
+  /*
+  build: {
     outDir: '/var/www/ivpsycho-bot.ru', // <-- директория для сборки
     emptyOutDir: true, // очищает старые файлы перед новой сборкой
   },
@@ -20,4 +21,5 @@ export default defineConfig({
     host: true,
     allowedHosts: true,
   },
+  */
 });

@@ -51,11 +51,11 @@ export const botCommandsApi = {
 }
 
 export const botApi = {
-	// Отправляет текстовое сообщение на бэкенд, который добавит задачу в очередь
+	// Отправляет сообщение на бэкенд по почте
 	sendMessage: async (payload: {
-		telegramId: string
+		userId: string
 		message: string
-		inlineKeyboard?: Array<Array<{ text: string; url: string }>>
+		//inlineKeyboard?: Array<Array<{ text: string; url: string }>>
 	}) => {
 		const { data } = await instance.post('/bot/message', payload)
 		return data

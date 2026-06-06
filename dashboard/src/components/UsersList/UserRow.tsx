@@ -5,11 +5,6 @@ type Props = { user: User; onSelect?: (u: User) => void }
 
 // Отдельный ряд списка — отображает аватар, имя и статус
 export default function UserRow({ user, onSelect }: Props) {
-	const name =
-		`${user.firstName || ''}${user.lastName ? ' ' + user.lastName : ''}`.trim() ||
-		user.username ||
-		'—'
-
 	return (
 		<div
 			className="flex items-center gap-3 px-3 py-2 hover:bg-gray-50 rounded cursor-pointer"
@@ -24,10 +19,10 @@ export default function UserRow({ user, onSelect }: Props) {
 			</div>
 
 			<div className="flex-1 min-w-0">
-				<div className="text-sm font-medium text-gray-900 truncate">{name}</div>
-				<div className="text-xs text-gray-500 truncate">
-					{user.username ? `@${user.username}` : user.language}
+				<div className="text-sm font-medium text-gray-900 truncate">
+					{user.email}
 				</div>
+				<div className="text-xs text-gray-500 truncate">Пользователь</div>
 			</div>
 
 			<div className="text-right">
