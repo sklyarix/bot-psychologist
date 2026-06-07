@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StatsRouteImport } from './routes/stats'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EditIndexRouteImport } from './routes/edit/index'
 import { Route as EditPageRouteImport } from './routes/edit/page'
@@ -19,6 +20,11 @@ import { Route as EditAiGoalMessagesRouteImport } from './routes/edit/ai-goal-me
 const StatsRoute = StatsRouteImport.update({
   id: '/stats',
   path: '/stats',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -49,6 +55,7 @@ const EditAiGoalMessagesRoute = EditAiGoalMessagesRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/stats': typeof StatsRoute
   '/edit/ai-goal-messages': typeof EditAiGoalMessagesRoute
   '/edit/bot': typeof EditBotRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/stats': typeof StatsRoute
   '/edit/ai-goal-messages': typeof EditAiGoalMessagesRoute
   '/edit/bot': typeof EditBotRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/stats': typeof StatsRoute
   '/edit/ai-goal-messages': typeof EditAiGoalMessagesRoute
   '/edit/bot': typeof EditBotRoute
@@ -76,6 +85,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/login'
     | '/stats'
     | '/edit/ai-goal-messages'
     | '/edit/bot'
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/login'
     | '/stats'
     | '/edit/ai-goal-messages'
     | '/edit/bot'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/login'
     | '/stats'
     | '/edit/ai-goal-messages'
     | '/edit/bot'
@@ -101,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginRoute: typeof LoginRoute
   StatsRoute: typeof StatsRoute
   EditAiGoalMessagesRoute: typeof EditAiGoalMessagesRoute
   EditBotRoute: typeof EditBotRoute
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/stats'
       fullPath: '/stats'
       preLoaderRoute: typeof StatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -157,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginRoute: LoginRoute,
   StatsRoute: StatsRoute,
   EditAiGoalMessagesRoute: EditAiGoalMessagesRoute,
   EditBotRoute: EditBotRoute,

@@ -30,7 +30,7 @@ export const login = async (req, res) => {
 			return res.status(401).json({ error: 'invalid_credentials' })
 		}
 
-		// Обновить время последней активности (если нужно)
+		// Обновить время последней активности
 		await prisma.user.update({
 			where: { id: user.id },
 			data: { updatedAt: new Date() }
@@ -42,7 +42,8 @@ export const login = async (req, res) => {
 		return res.json({
 			user: {
 				id: user.id,
-				email: user.email
+				email: user.email,
+				role: user.role
 			},
 			token
 		})

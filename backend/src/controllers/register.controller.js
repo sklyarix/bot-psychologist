@@ -8,6 +8,7 @@ import { prisma } from '../lib/prisma.js'
 export const register = async (req, res) => {
 	try {
 		const { email, password } = req.body
+
 		// Валидация
 		if (!email || !password) {
 			return res.status(400).json({ error: 'email and password are required' })
@@ -31,11 +32,12 @@ export const register = async (req, res) => {
 		// Захешировать пароль
 		const hashedPassword = await bcrypt.hash(password, 10)
 
-		// Создать пользователя
+		// Создать пользователя (роль по умолчанию — user)
 		const userData = await prisma.user.create({
 			data: {
 				email,
 				password: hashedPassword
+				// role: 'user' — устанавливается автоматически по умолчанию
 			}
 		})
 
@@ -45,7 +47,8 @@ export const register = async (req, res) => {
 		return res.json({
 			user: {
 				id: userData.id,
-				email: userData.email
+				email: userData.email,
+				role: userData.role
 			},
 			token
 		})

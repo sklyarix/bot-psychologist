@@ -59,70 +59,94 @@ import {
 import { getAllUsers } from '../controllers/users.controller.js'
 import { getUserStats } from '../controllers/users.stats.controller.js'
 import { auth } from '../middlewares/auth.middleware.js'
+import { requireAdmin } from '../middlewares/requireAdmin.middleware.js'
 
-// TODO: auth для админки
 const index = Router()
 
-//Auth
+// ─── Public auth ────────────────────────────────────────────────────────────
 index.route('/auth/login').post(login)
 index.route('/auth/register').post(register)
 index.route('/auth/check-email').post(userCheck)
 
-//users
-index.route('/users').get(getAllUsers)
+// ─── Current user info (любой авторизованный) ───────────────────────────────
+index.get('/auth/me', auth, (req, res) => {
+	const { id, email, role } = req.user
+	res.json({ id, email, role })
+})
 
-// stats
+// ─── Users (admin only) ──────────────────────────────────────────────────────
+index.route('/users').get(auth, requireAdmin, getAllUsers)
+
+// ─── Stats ───────────────────────────────────────────────────────────────────
 index.route('/stats/visit').post(auth, createVisit)
-index.route('/stats/visit').get(getAllVisits)
-// bot messages
-index.route('/bot/message').post(enqueueBotMessage)
-index.route('/bot/message/video').post(enqueueBotMessageVideo)
-// user stats
-index.route('/users/:id/stats').get(getUserStats)
+index.route('/stats/visit').get(auth, requireAdmin, getAllVisits)
+index.route('/users/:id/stats').get(auth, requireAdmin, getUserStats)
 
-//CMS
+// ─── Bot messages (admin only) ───────────────────────────────────────────────
+index.route('/bot/message').post(auth, requireAdmin, enqueueBotMessage)
+index
+	.route('/bot/message/video')
+	.post(auth, requireAdmin, enqueueBotMessageVideo)
 
-// pages
-index.route('/cms/pages').post(createPage)
-index.route('/cms/pages').get(getAllPages)
-index.route('/cms/pages/:id').get(getIdPage)
-index.route('/cms/pages/:id').put(updatePage)
-index.route('/cms/pages/:id').delete(deletePage)
-// page fields
-index.route('/cms/page-fields').post(createPageField)
-index.route('/cms/page-fields').get(getAllPageFields)
-index.route('/cms/page-fields/:id').get(getIdPageField)
-index.route('/cms/page-fields/:id').put(updatePageField)
-index.route('/cms/page-fields/:id').delete(deletePageField)
-// page field groups
-index.route('/cms/page-field-groups').post(createPageFieldGroup)
-index.route('/cms/page-field-groups').get(getAllPageFieldGroups)
-index.route('/cms/page-field-groups/:id').get(getIdPageFieldGroup)
-index.route('/cms/page-field-groups/:id').put(updatePageFieldGroup)
-index.route('/cms/page-field-groups/:id').delete(deletePageFieldGroup)
+// ─── CMS: pages (admin only) ─────────────────────────────────────────────────
+index.route('/cms/pages').post(auth, requireAdmin, createPage)
+index.route('/cms/pages').get(auth, requireAdmin, getAllPages)
+index.route('/cms/pages/:id').get(auth, getIdPage)
+index.route('/cms/pages/:id').put(auth, requireAdmin, updatePage)
+index.route('/cms/pages/:id').delete(auth, requireAdmin, deletePage)
 
-// AI
-// goals
+// ─── CMS: page fields (admin only) ───────────────────────────────────────────
+index.route('/cms/page-fields').post(auth, requireAdmin, createPageField)
+index.route('/cms/page-fields').get(auth, requireAdmin, getAllPageFields)
+index.route('/cms/page-fields/:id').get(auth, getIdPageField)
+index.route('/cms/page-fields/:id').put(auth, requireAdmin, updatePageField)
+index.route('/cms/page-fields/:id').delete(auth, requireAdmin, deletePageField)
+
+// ─── CMS: page field groups (admin only) ─────────────────────────────────────
+index
+	.route('/cms/page-field-groups')
+	.post(auth, requireAdmin, createPageFieldGroup)
+index
+	.route('/cms/page-field-groups')
+	.get(auth, requireAdmin, getAllPageFieldGroups)
+index
+	.route('/cms/page-field-groups/:id')
+	.get(auth, requireAdmin, getIdPageFieldGroup)
+index
+	.route('/cms/page-field-groups/:id')
+	.put(auth, requireAdmin, updatePageFieldGroup)
+index
+	.route('/cms/page-field-groups/:id')
+	.delete(auth, requireAdmin, deletePageFieldGroup)
+
+// ─── AI: goals (private) ─────────────────────────────────────────────────────
 index.route('/ai/goals').post(auth, createAiGoal)
 index.route('/ai/goals').get(auth, getAllAiGoal)
 index.route('/ai/goals/:id').get(auth, getIdAiGoal)
-// Q&A
+
+// ─── AI: Q&A (private) ───────────────────────────────────────────────────────
 index.route('/ai/qa').post(auth, createAiQA)
 index.route('/ai/qa').get(auth, getAllAiQA)
 index.route('/ai/qa/:id').get(auth, getIdAiQA)
 
-// Bot Commands
-index.route('/bot-commands').post(createBotCommand)
-index.route('/bot-commands').get(getAllBotCommands)
-index.route('/bot-commands/:id').get(getBotCommandById)
-index.route('/bot-commands/:id').put(updateBotCommand)
-index.route('/bot-commands/:id').delete(deleteBotCommand)
+// ─── Bot Commands (admin only) ───────────────────────────────────────────────
+index.route('/bot-commands').post(auth, requireAdmin, createBotCommand)
+index.route('/bot-commands').get(auth, requireAdmin, getAllBotCommands)
+index.route('/bot-commands/:id').get(auth, requireAdmin, getBotCommandById)
+index.route('/bot-commands/:id').put(auth, requireAdmin, updateBotCommand)
+index.route('/bot-commands/:id').delete(auth, requireAdmin, deleteBotCommand)
 
-// AI Goal Messages
-index.route('/ai-goal-messages').post(createAiGoalMessage)
-index.route('/ai-goal-messages').get(getAllAiGoalMessages)
-index.route('/ai-goal-messages/:id').get(getAiGoalMessageById)
-index.route('/ai-goal-messages/:id').put(updateAiGoalMessage)
-index.route('/ai-goal-messages/:id').delete(deleteAiGoalMessage)
+// ─── AI Goal Messages (admin only) ───────────────────────────────────────────
+index.route('/ai-goal-messages').post(auth, requireAdmin, createAiGoalMessage)
+index.route('/ai-goal-messages').get(auth, requireAdmin, getAllAiGoalMessages)
+index
+	.route('/ai-goal-messages/:id')
+	.get(auth, requireAdmin, getAiGoalMessageById)
+index
+	.route('/ai-goal-messages/:id')
+	.put(auth, requireAdmin, updateAiGoalMessage)
+index
+	.route('/ai-goal-messages/:id')
+	.delete(auth, requireAdmin, deleteAiGoalMessage)
 
 export default index

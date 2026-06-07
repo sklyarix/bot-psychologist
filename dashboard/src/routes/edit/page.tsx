@@ -1,6 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
-import EditPage from '../../pages/EditPage.tsx'
+import ProtectedRoute from '../../components/ProtectedRoute'
+import EditPage from '../../pages/EditPage'
 
 export const Route = createFileRoute('/edit/page')({
-	component: EditPage
+	component: () => (
+		<ProtectedRoute adminOnly>
+			<EditPage />
+		</ProtectedRoute>
+	)
 })
