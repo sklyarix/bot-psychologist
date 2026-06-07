@@ -25,7 +25,7 @@ const FeatureCard = (props: IFeatureCard) => {
         to={name}
         params={name}
         className="btn"
-        onClick={() => webApp?.HapticFeedback.impactOccurred('light')}
+        // onClick={() => webApp?.HapticFeedback.impactOccurred('light')}
       >
         {buttonText}
       </Link>
