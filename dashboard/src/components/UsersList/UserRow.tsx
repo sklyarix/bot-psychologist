@@ -26,9 +26,6 @@ export default function UserRow({ user, onSelect }: Props) {
 			</div>
 
 			<div className="text-right">
-				<div className="text-sm font-medium text-gray-900">
-					{user.isPremium ? 'Premium' : ''}
-				</div>
 				<div className="text-xs text-gray-500">
 					{new Date(user.updatedAt).toLocaleString()}
 				</div>
