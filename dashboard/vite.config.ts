@@ -12,15 +12,17 @@ export default defineConfig({
 		}),
 		react(),
 		tailwindcss()
-	],
-build: {
-    outDir: '/var/www/dashboard', // <-- директория для сборки
-    emptyOutDir: true, // очищает старые файлы перед новой сборкой
-  },
+	]
+	/*
+	build: {
+		outDir: '/var/www/dashboard', // <-- директория для сборки
+		emptyOutDir: true // очищает старые файлы перед новой сборкой
+	},
 	server: {
 		host: 'localhost',
 		port: 5174,
 		strictPort: true, // если порт занят — не прыгать на другой
 		open: '/' // открыть браузер на /
 	}
+	*/
 })
