@@ -28,6 +28,8 @@ export class AIService {
 				}
 			)
 
+			console.log(result)
+
 			if (result.ok) {
 				const responseData = await result.json()
 				const content = responseData?.choices?.[0]?.message?.content ?? ''

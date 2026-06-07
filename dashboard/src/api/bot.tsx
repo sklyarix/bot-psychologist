@@ -51,12 +51,7 @@ export const botCommandsApi = {
 }
 
 export const botApi = {
-	// Отправляет сообщение на бэкенд по почте
-	sendMessage: async (payload: {
-		userId: string
-		message: string
-		//inlineKeyboard?: Array<Array<{ text: string; url: string }>>
-	}) => {
+	sendMessage: async (payload: { userId: string; message: string }) => {
 		const { data } = await instance.post('/bot/message', payload)
 		return data
 	}

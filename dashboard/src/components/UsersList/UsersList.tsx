@@ -4,7 +4,6 @@ import MessageField from '../BotMessage/MessageField'
 import UserRow from './UserRow'
 import UserStats from './UserStats'
 
-// Список пользователей в стиле чата Telegram
 export default function UsersList() {
 	const { data, isLoading, error } = useGetAllUsersSub()
 	const [selected, setSelected] = useState<string | null>(null)
@@ -24,25 +23,21 @@ export default function UsersList() {
 					<div className="text-sm font-semibold">Пользователи</div>
 					<button
 						className="text-sm text-blue-600 hover:underline"
-						onClick={() => setBroadcastOpen(true)}
+						onClick={() => setBroadcastOpen(b => !b)}
 						type="button">
-						Написать всем
+						{broadcastOpen ? 'Закрыть рассылку' : 'Написать всем'}
 					</button>
 				</div>
 			</div>
 
 			{broadcastOpen && (
 				<div className="p-3 border-b bg-gray-50">
-					<div className="flex justify-end mb-2">
-						<button
-							className="text-sm text-gray-500"
-							onClick={() => setBroadcastOpen(false)}
-							type="button">
-							Закрыть
-						</button>
-					</div>
+					<p className="text-xs text-gray-500 mb-2">
+						Сообщение будет отправлено на e-mail всех зарегистрированных
+						пользователей
+					</p>
 					<MessageField
-						telegramId={'all_active'}
+						userId="all_active"
 						onSent={() => setBroadcastOpen(false)}
 					/>
 				</div>
@@ -61,22 +56,23 @@ export default function UsersList() {
 								}
 							/>
 
-							{/* Если текущий пользователь выбран — показываем поле сообщения прямо под ним */}
 							{selected === u.id && (
 								<div className="p-3 border-b bg-gray-50">
 									<div className="flex justify-end mb-2">
 										<button
-											className="text-sm text-gray-500"
+											className="text-sm text-gray-500 hover:text-gray-700"
 											onClick={() => setSelected(null)}
 											type="button">
 											Закрыть
 										</button>
 									</div>
 									<UserStats userId={u.id} />
-									<MessageField
-										telegramId={u.id}
-										onSent={() => setSelected(null)}
-									/>
+									<div className="mt-3">
+										<MessageField
+											userId={u.id}
+											onSent={() => setSelected(null)}
+										/>
+									</div>
 								</div>
 							)}
 						</div>
