@@ -84,7 +84,7 @@ function RouteComponent() {
         navigate({ to: '/' });
       }
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Ошибка при аутентификации');
+      setError('Ошибка при аутентификации');
     } finally {
       setLoading(false);
     }
