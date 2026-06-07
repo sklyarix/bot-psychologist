@@ -52,6 +52,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 	const login = useCallback(async (email: string, password: string) => {
 		const res = await authApi.login(email, password)
+
+		if (res.user.role !== 'admin') {
+			throw new Error('access_denied')
+		}
+
 		localStorage.setItem('token', res.token)
 		setToken(res.token)
 		setUser(res.user)

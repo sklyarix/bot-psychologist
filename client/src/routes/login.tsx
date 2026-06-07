@@ -98,7 +98,7 @@ function RouteComponent() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+    <div className="bg-sand flex min-h-screen items-center justify-center">
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
         <h1 className="mb-6 text-2xl font-bold">
           {stage === 'email' ? 'Вход' : isRegistering ? 'Регистрация' : 'Вход'}
@@ -111,7 +111,7 @@ function RouteComponent() {
         {stage === 'email' ? (
           <form onSubmit={handleEmailSubmit}>
             <div className="mb-4">
-              <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="text-navy mb-2 block text-sm font-medium">
                 Email
               </label>
               <input
@@ -121,14 +121,14 @@ function RouteComponent() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={loading}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:bg-gray-100"
+                className="focus:ring-navy/30 w-full rounded-[10px] border border-gray-200 px-4 py-2.5 text-sm transition focus:ring-2 focus:outline-none"
                 placeholder="your@email.com"
               />
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-blue-500 py-2 font-semibold text-white transition hover:bg-blue-600 disabled:bg-blue-400"
+              className="btn mt-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? 'Проверка...' : 'Продолжить'}
             </button>
@@ -136,7 +136,7 @@ function RouteComponent() {
         ) : (
           <form onSubmit={handlePasswordSubmit}>
             <div className="mb-4">
-              <label htmlFor="password" className="mb-2 block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="text-navy mb-2 block text-sm font-medium">
                 Пароль
               </label>
               <input
@@ -146,7 +146,7 @@ function RouteComponent() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 disabled={loading}
-                className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:bg-gray-100"
+                className="focus:ring-navy/30 w-full rounded-[10px] border border-gray-200 px-4 py-2.5 text-sm transition focus:ring-2 focus:outline-none"
                 placeholder="Введите пароль"
                 minLength={6}
               />
@@ -156,7 +156,7 @@ function RouteComponent() {
               <div className="mb-4">
                 <label
                   htmlFor="confirmPassword"
-                  className="mb-2 block text-sm font-medium text-gray-700"
+                  className="text-navy mb-2 block text-sm font-medium"
                 >
                   Подтвердите пароль
                 </label>
@@ -167,7 +167,7 @@ function RouteComponent() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                   disabled={loading}
-                  className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:bg-gray-100"
+                  className="focus:ring-navy/30 w-full rounded-[10px] border border-gray-200 px-4 py-2.5 text-sm transition focus:ring-2 focus:outline-none"
                   placeholder="Подтвердите пароль"
                   minLength={6}
                 />
@@ -177,7 +177,7 @@ function RouteComponent() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-blue-500 py-2 font-semibold text-white transition hover:bg-blue-600 disabled:bg-blue-400"
+              className="btn mt-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? 'Загрузка...' : isRegistering ? 'Создать аккаунт' : 'Войти'}
             </button>
@@ -186,7 +186,7 @@ function RouteComponent() {
               type="button"
               onClick={handleBack}
               disabled={loading}
-              className="mt-3 w-full rounded-lg border border-gray-300 py-2 font-semibold text-gray-700 transition hover:bg-gray-50 disabled:bg-gray-100"
+              className="btn-sand mt-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
             >
               Назад
             </button>

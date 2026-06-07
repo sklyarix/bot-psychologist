@@ -71,3 +71,18 @@ body {
 	text-align: center;
 	color: #fff;
 }
+.btn-sand {
+	display: block;
+	padding: 10px 6px 8px 6px;
+	width: 100%;
+
+	background-color: var(--color-sand);
+	border-radius: 15px;
+
+	font-family: 'CirceRounded', serif;
+	font-size: 16px;
+	font-weight: 500;
+	text-transform: uppercase;
+	text-align: center;
+	color: var(--color-navy);
+}

@@ -108,7 +108,7 @@ const LoginPage = () => {
 						<button
 							type="submit"
 							disabled={loading}
-							className="btn mt-2 disabled:opacity-60 disabled:cursor-not-allowed">
+							className="cursor-pointer btn mt-2 disabled:opacity-60 disabled:cursor-not-allowed">
 							{loading ? 'Вход...' : 'Войти'}
 						</button>
 					</form>
